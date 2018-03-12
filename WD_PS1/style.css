@@ -1,20 +1,28 @@
 body {
+  	font-size: 0;
+}
+.block-body{
 	margin-left: auto;
     margin-right: auto;
     min-height: 100%;
   	height: 100%;
-  	width: 80%;
-  	font-size: 0;
-  
+  	width: 960px;
 }
 .anchor {
 	display: block;
 	margin-top: -100px;
 	padding-top: 100px
 }
+.anchor-menu {
+	text-decoration: none;
+}
+.anchor-menu:visited{
+	text-decoration: none;
+	color: -webkit-link;
+}
 .block-header {
 	background: #dfe6e9;
-	width: 80%;
+	width: 960px;
 	position: fixed;  
 	top: 0;  
 	z-index: 100;  
@@ -36,7 +44,6 @@ body {
 .block-header-menu {
 	float: right;
 	vertical-align: middle;
-	display: table-cell;
 	text-align: center;
 	margin: 4% 0 0 0;
 }
@@ -60,17 +67,20 @@ body {
 	width: 100px;
 	float: left;
 }
-.block-body-class {
+.block-product {
 	font-size: 16px;
+	display: inline-flex;
 }
-.block-col2 { 
+.block-about{
+	font-size: 16px;
+	display: inline-flex;
+}
+.block-col2 {
 	background: #0984e3;
 	max-width: 50%;
 	width: 50%;
 	vertical-align: middle;
-	display: table-cell;
 	text-align: center;
-	margin: 0 10% 0;
 }
 .block-col2 p {
 	margin: 5%;
@@ -104,9 +114,7 @@ input.buy:active {
 	max-width: 33%;
 	width: 33%;
 	vertical-align: middle;
-	display: table-cell;
 	text-align: center;
-	margin: 0 10% 0;
 	padding: 10px;
 }
 .block-col3 img {
@@ -119,12 +127,15 @@ input.buy:active {
 }
 .block-contactUs form {
 	font-size: 16px;
-	text-align: center;
+	text-align: initial;
 	display: inline-grid;
 	width: 30%;
 }
 .block-contactUs input, textarea {
 	margin: 5px;
+}
+.block-contactUs [type="radio"] {
+	display: inline;
 }
 .block-contactUs h2 {
 	padding-top: 22px;
@@ -176,17 +187,6 @@ input.buy:active {
 	margin: 5px;
 }
 
-
-.block--blackout{
-	display: none;
-	background-color: #000;
-	opacity: 0.50;
-	position: absolute;
-	z-index: 100;
-	width: 30%;
-	position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.block-footer {
+  flex: 0 0 auto;
 }
