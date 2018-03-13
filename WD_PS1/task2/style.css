@@ -1,5 +1,4 @@
 body {
-  	font-size: 0;
   	margin: 0;
 }
 .block-body{
@@ -26,7 +25,6 @@ body {
 }
 .anchor-menu:visited{
 	text-decoration: none;
-	color: -webkit-link;
 }
 .block-header {
 	background: #dfe6e9;
