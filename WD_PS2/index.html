@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>WD_PS2</title>
+	<script type="text/javascript" src="script.js"></script>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="block">			
+		<div class="block-task-even">
+			<div class="container">
+				<h3>Task 1</h3>
+				<p>Let's calculate the sum of numbers from -1000 to 1000</p>
+				<form action="">
+					<input type="button" name="task1-button" onclick="getResultTask1()" value="to count">
+					<input type="text" readonly id="task1-result">
+				</form>
+			</div>
+			<hr>
+		</div>
+
+		<div class="block-task">
+			<div class="container">
+				<h3>Task 2</h3>
+				<p>Let's calculate the sum of the numbers from -1000 to 1000, which end in 2, 3 and 7</p>
+				<form action="">
+					<input type="button" name="task2-button" onclick="getResultTask2()" value="to count">
+					<input type="text" readonly id="task2-result">
+				</form>
+			</div>
+			<hr>
+		</div>
+
+		<div class="block-task-even">
+			<div class="container">
+				<h3>Task 3</h3>
+				<p>Let's display a list of 50 lines in the form of a triangle</p>
+				<form action="">
+					<input type="button" name="task3-button" onclick="getResultTask3()" value="withdraw">
+					<div id="task3" class="block-task3"></div>
+				</form>
+			</div>
+			<hr>
+		</div>
+
+		<div class="block-task">
+			<div class="container">
+				<h3>Task 4</h3>
+				<p>Let's translate seconds into minutes and hours</p>
+				<div class="block-task-form">
+					<form>
+						<p>Enter seconds:</p>
+						<input type="number" id="task4-input" required placeholder="12345" pattern="[0-9]{1,10}" AUTOCOMPLETE="off">
+						<div class="block-error-valid" id="block-error-task4"></div>
+						<input type="button" name="task4-button" onclick="getResultTask4()" value="Enter">
+						<input type="text" readonly id="task4-result" placeholder="result">
+					</form>
+				</div>
+			</div>
+			<hr>
+		</div>
+
+		<div class="block-task-even">
+			<div class="container">
+				<h3>Task 5</h3>
+				<p>let's add a prefix to your age</p>
+				<form>
+					<p>enter your age</p>
+					<input type="number" id="task5-input" placeholder="12345">
+					<div class="block-error-valid" id="block-error-task5"></div>
+					<input type="button" name="task5-button" onclick="getResultTask5()" value="Enter">
+					<input type="text" readonly id="task5-result" placeholder="result">
+				</form>
+			</div>
+			<hr>
+		</div>
+
+		<div class="block-task">
+			<div class="container">
+				<h3>Task 6</h3>
+				<p>let's find out the difference between dates</p>
+				<form>
+					<p>Input format: October 13, 2014 11:13:00</p>
+					<input type="text" id="task6-first-input" placeholder="October 13, 2014 11:13:00">
+					<div class="block-error-valid" id="block-error-task6-first"></div>
+					<input type="text" id="task6-second-input" placeholder="October 13, 2014 11:13:00">
+					<div class="block-error-valid" id="block-error-task6-second"></div>
+					<input type="button" name="task6-button" onclick="getResultTask6()" value="Enter">
+					<input type="text" readonly id="task6-result" placeholder="result">
+				</form>
+			</div>
+			<hr>
+		</div>
+
+		<div class="block-task-even">
+			<div class="container">
+				<h3>Task 7</h3>
+				<p>let's find out your zodiac sign</p>
+				<form>
+					<p>enter your date of birth:</p>
+					<input type="text" id="task7-input" placeholder="2014-12-31">
+					<div class="block-error-valid" id="block-error-task7"></div>
+					<input type="button" name="task7-button" onclick="getResultTask7()" value="Enter">
+					<input type="text" readonly id="task7-result" placeholder="result">
+					<img src="" id='task7-iconsZodiak'>
+				</form>
+			</div>
+		</div>
+
+		<div class="block-task">
+			<div class="container">
+				<h3>Task 8</h3>
+				<p>let's draw a chessboard</p>
+				<div id="div-task8">
+					<form>
+						<p>enter the size of the chessboard</p>
+						<input type="text" id="task8-input" placeholder="8x8">
+						<div class="block-error-valid" id="block-error-task8"></div>
+						<input type="button" name="task8-button" onclick="getResultTask8()" value="Enter">
+						<div id="div-task8-result"><br></div>
+					</form>
+				</div>
+			</div>
+			<hr>
+		</div>
+
+		<div class="block-task-even">
+			<div class="container">
+				<h3>Task 9</h3>
+				<p>let's define the number of the entrance and the floor by the apartment number</p>
+				<form>
+					<p>enter the apartment number</p>
+					<input type="number" id="task9-apartment-input" placeholder="apartment number">
+					<div class="block-error-valid" id="block-error-task9-apartment"></div>
+					<p>enter the number of apartments on the floor</p>
+					<input type="number" id="task9-apartmentAmount-input" placeholder="number of apartments on the floor">
+					<div class="block-error-valid" id="block-error-task9-apartmentAmount"></div>
+					<p>enter number of floors</p>
+					<input type="number" id="task9-floors-input" placeholder="number of floors">
+					<div class="block-error-valid" id="block-error-task9-floors"></div>
+					<input type="button" name="task9-button" onclick="getResultTask9()" value="Enter">
+					<input type="text" readonly id="task9-result" placeholder="Result">
+				</form>
+			</div>
+			<hr>
+		</div>
+
+		<div class="block-task">
+			<div class="container">
+				<h3>Task 10</h3>
+				<p>let's find the sum of the digits of a number</p>
+				<form>
+					<p>enter the number</p>
+					<input type="number" id="task10-input" placeholder="12345">
+					<div class="block-error-valid" id="block-error-task10"></div>
+					<input type="button" name="task10-button" onclick="getResultTask10()" value="Enter">
+					<input type="text" readonly id="task10-result" placeholder="Result">
+				</form>
+			</div>
+		</div>
+
+		<div class="block-task-even">
+			<div class="container">
+				<h3>Task 11</h3>
+				<p>let's clean the url address</p>
+				<form>
+					<textarea name="" id="task11-textarea" cols="30" rows="10" onBlur='getResultTask11()' placeholder="Enter a comma-separated url"></textarea>
+				</form>
+				<div class="div-task-11">
+					<ul id="task11-ul"></ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="block block-footer">
+		<p>2018 Made by Den Kopach</p>
+	</div>
+</body>
+</html>

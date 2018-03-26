@@ -1,0 +1,101 @@
+body{
+	margin: 0;
+}
+.block {
+}
+.block-container {
+	margin-left: auto;
+    margin-right: auto;
+}
+.block-task3{
+	text-align: left;
+	margin-left: 35%;
+}
+.task8-line {
+	display: flex;
+}
+.div-task8-cell-even {
+	width: 20px;
+	height: 20px;
+	background: red;
+	max-height: border-box;
+}
+.div-task8-cell-odd {
+	width: 20px;
+	height: 20px;
+	background: blue;
+}
+.block-task{
+	background: #FAEBD7;
+	text-align: center;
+}
+.block-task-even{
+	background: #F0F8FF;
+	text-align: center;
+}
+.block-task-even, .block-task{
+	display: flex;
+	align-items: center;
+	align-content: center; 
+	justify-content: center; 
+}
+.block-task  h3, .block-task-even h3{
+	margin-top: 0;
+	padding: 15px;
+}
+.block-task  hr, .block-task-even hr{
+	margin: 0;
+}
+.block-task input, .block-task-even input{
+	position: relative;
+	margin: 1em 0;
+	height: 34px;
+}
+.container{
+	width: 50%;
+}
+.block-error-valid{
+	display: none;
+}
+.block-error-invalid{
+	background: red;
+	border-radius: 7px;
+	margin: -0.7em 0;
+	border-radius: 7px;
+	font-size: 1em;
+}
+.input-is-error{
+	border-color: red;
+}
+input[type = 'button']{
+	font-family: 'core_sans_bold';
+	font-weight: bold;
+	text-transform: uppercase;
+	border: none;
+	width: 190px;
+	background: #bed255;
+	border-color: #fff;
+	color: #fff;
+	margin: 1em auto;
+	border-radius: 12px;
+	cursor: pointer;
+}
+form {
+	display: inline-grid;
+	width: 50%;
+}
+form p {
+	margin: 0;
+	text-align: left;
+	font-style: italic;
+}
+.block-footer {
+	flex: 0 0 auto;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+}
+.block-footer p {
+	text-align: center;
+	font-size: 16px;
+}
