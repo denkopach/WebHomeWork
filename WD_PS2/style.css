@@ -1,4 +1,4 @@
-body{
+body {
 	margin: 0;
 }
 .block {
@@ -6,6 +6,10 @@ body{
 .block-container {
 	margin-left: auto;
     margin-right: auto;
+}
+.container .span-result {
+	padding-bottom: 10px;
+    display: inherit;
 }
 .block-task3{
 	text-align: left;
@@ -25,39 +29,39 @@ body{
 	height: 20px;
 	background: blue;
 }
-.block-task{
+.block-task {
 	background: #FAEBD7;
 	text-align: center;
 }
-.block-task-even{
+.block-task-even {
 	background: #F0F8FF;
 	text-align: center;
 }
-.block-task-even, .block-task{
+.block-task-even, .block-task {
 	display: flex;
 	align-items: center;
 	align-content: center; 
 	justify-content: center; 
 }
-.block-task  h3, .block-task-even h3{
+.block-task  h3, .block-task-even h3 {
 	margin-top: 0;
 	padding: 15px;
 }
-.block-task  hr, .block-task-even hr{
+.block-task  hr, .block-task-even hr {
 	margin: 0;
 }
-.block-task input, .block-task-even input{
+.block-task input, .block-task-even input {
 	position: relative;
 	margin: 1em 0;
 	height: 34px;
 }
-.container{
+.container {
 	width: 50%;
 }
-.block-error-valid{
+.block-error-valid {
 	display: none;
 }
-.block-error-invalid{
+.block-error-invalid {
 	background: red;
 	border-radius: 7px;
 	margin: -0.7em 0;
@@ -67,7 +71,7 @@ body{
 .input-is-error{
 	border-color: red;
 }
-input[type = 'button']{
+input[type = 'button'] {
 	font-family: 'core_sans_bold';
 	font-weight: bold;
 	text-transform: uppercase;

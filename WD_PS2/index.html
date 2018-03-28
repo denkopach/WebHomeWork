@@ -9,13 +9,13 @@
 <body>
 	<div class="block">			
 		<div class="block-task-even">
-			<div class="container">
+			<div class="container" id="task1">
 				<h3>Task 1</h3>
 				<p>Let's calculate the sum of numbers from -1000 to 1000</p>
-				<form action="">
-					<input type="button" name="task1-button" onclick="getResultTask1()" value="to count">
-					<input type="text" readonly id="task1-result">
+				<form>
+					<input type="button" onclick="getResultTask1()" value="to count">
 				</form>
+				<span id='result-task1'></span>
 			</div>
 			<hr>
 		</div>
@@ -24,10 +24,10 @@
 			<div class="container">
 				<h3>Task 2</h3>
 				<p>Let's calculate the sum of the numbers from -1000 to 1000, which end in 2, 3 and 7</p>
-				<form action="">
-					<input type="button" name="task2-button" onclick="getResultTask2()" value="to count">
-					<input type="text" readonly id="task2-result">
+				<form>
+					<input type="button" onclick="getResultTask2()" value="to count">
 				</form>
+				<span id='result-task2'></span>
 			</div>
 			<hr>
 		</div>
@@ -36,8 +36,8 @@
 			<div class="container">
 				<h3>Task 3</h3>
 				<p>Let's display a list of 50 lines in the form of a triangle</p>
-				<form action="">
-					<input type="button" name="task3-button" onclick="getResultTask3()" value="withdraw">
+				<form>
+					<input type="button" onclick="getResultTask3()" value="withdraw">
 					<div id="task3" class="block-task3"></div>
 				</form>
 			</div>
@@ -53,9 +53,9 @@
 						<p>Enter seconds:</p>
 						<input type="number" id="task4-input" required placeholder="12345" pattern="[0-9]{1,10}" AUTOCOMPLETE="off">
 						<div class="block-error-valid" id="block-error-task4"></div>
-						<input type="button" name="task4-button" onclick="getResultTask4()" value="Enter">
-						<input type="text" readonly id="task4-result" placeholder="result">
+						<input type="button" onclick="getResultTask4()" value="Enter">
 					</form>
+					<span id='result-task4'></span>
 				</div>
 			</div>
 			<hr>
@@ -69,9 +69,9 @@
 					<p>enter your age</p>
 					<input type="number" id="task5-input" placeholder="12345">
 					<div class="block-error-valid" id="block-error-task5"></div>
-					<input type="button" name="task5-button" onclick="getResultTask5()" value="Enter">
-					<input type="text" readonly id="task5-result" placeholder="result">
+					<input type="button" onclick="getResultTask5()" value="Enter">
 				</form>
+				<span id='result-task5'></span>
 			</div>
 			<hr>
 		</div>
@@ -86,9 +86,9 @@
 					<div class="block-error-valid" id="block-error-task6-first"></div>
 					<input type="text" id="task6-second-input" placeholder="October 13, 2014 11:13:00">
 					<div class="block-error-valid" id="block-error-task6-second"></div>
-					<input type="button" name="task6-button" onclick="getResultTask6()" value="Enter">
-					<input type="text" readonly id="task6-result" placeholder="result">
+					<input type="button" onclick="getResultTask6()" value="Enter">
 				</form>
+				<span id='result-task6'></span>
 			</div>
 			<hr>
 		</div>
@@ -101,10 +101,10 @@
 					<p>enter your date of birth:</p>
 					<input type="text" id="task7-input" placeholder="2014-12-31">
 					<div class="block-error-valid" id="block-error-task7"></div>
-					<input type="button" name="task7-button" onclick="getResultTask7()" value="Enter">
-					<input type="text" readonly id="task7-result" placeholder="result">
-					<img src="" id='task7-iconsZodiak'>
+					<input type="button" onclick="getResultTask7()" value="Enter">
 				</form>
+				<span id='result-task7'></span>
+				<img src="" id='task7-iconsZodiak'>
 			</div>
 		</div>
 
@@ -117,7 +117,7 @@
 						<p>enter the size of the chessboard</p>
 						<input type="text" id="task8-input" placeholder="8x8">
 						<div class="block-error-valid" id="block-error-task8"></div>
-						<input type="button" name="task8-button" onclick="getResultTask8()" value="Enter">
+						<input type="button" onclick="getResultTask8()" value="Enter">
 						<div id="div-task8-result"><br></div>
 					</form>
 				</div>
@@ -139,9 +139,9 @@
 					<p>enter number of floors</p>
 					<input type="number" id="task9-floors-input" placeholder="number of floors">
 					<div class="block-error-valid" id="block-error-task9-floors"></div>
-					<input type="button" name="task9-button" onclick="getResultTask9()" value="Enter">
-					<input type="text" readonly id="task9-result" placeholder="Result">
+					<input type="button" onclick="getResultTask9()" value="Enter">
 				</form>
+				<span id='result-task9'></span>
 			</div>
 			<hr>
 		</div>
@@ -154,9 +154,9 @@
 					<p>enter the number</p>
 					<input type="number" id="task10-input" placeholder="12345">
 					<div class="block-error-valid" id="block-error-task10"></div>
-					<input type="button" name="task10-button" onclick="getResultTask10()" value="Enter">
-					<input type="text" readonly id="task10-result" placeholder="Result">
+					<input type="button" onclick="getResultTask10()" value="Enter">
 				</form>
+				<span id='result-task10'></span>
 			</div>
 		</div>
 
