@@ -117,11 +117,11 @@ function getResultTask6(){
 			];
 			var res = 
 				getStringNameForIntVal(result[0], ' год, ', ' года, ', ' лет, ') +
-				getStringNameForIntVal(result[1], ' месяц, ', ' месяца, ', ' месяцев, ') +
-				getStringNameForIntVal(result[2], ' день, ', ' дня, ', ' дней, ') +
-				getStringNameForIntVal(result[3], ' час, ', ' часа, ', ' часов, ' ) +
-				getStringNameForIntVal(result[4], ' минута, ', ' минуты, ', ' минут, ' ) +
-				getStringNameForIntVal(result[5], ' секунда, ', ' секунды, ', ' секунд' );
+				getStringNameForIntVal(Math.abs(result[1]), ' месяц, ', ' месяца, ', ' месяцев, ') +
+				getStringNameForIntVal(Math.abs(result[2]), ' день, ', ' дня, ', ' дней, ') +
+				getStringNameForIntVal(Math.abs(result[3]), ' час, ', ' часа, ', ' часов, ' ) +
+				getStringNameForIntVal(Math.abs(result[4]), ' минута, ', ' минуты, ', ' минут, ' ) +
+				getStringNameForIntVal(Math.abs(result[5]), ' секунда, ', ' секунды, ', ' секунд' );
 			addResult(res, 'task6');
 
 		}
@@ -158,12 +158,12 @@ function isValidDateTask6(input){
 	];
 	var date = convertToDate(input);
 	input = input.split(/,| |:/);
-	return  date.getFullYear()      === input[3]
-			&& date.getDate()       === input[1]
-			&& date.getHours()	    === input[4] 
-			&& date.getMinutes()    === input[5]
-			&& date.getSeconds()    === input[6]
-			&& arr[date.getMonth()] === input[0];
+	return  date.getFullYear()      == input[3]
+			&& date.getDate()       == input[1]
+			&& date.getHours()	    == input[4] 
+			&& date.getMinutes()    == input[5]
+			&& date.getSeconds()    == input[6]
+			&& arr[date.getMonth()] == input[0];
 }
 
 function convertToDate(inputText){
