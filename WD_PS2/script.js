@@ -99,7 +99,7 @@ function getResultTask6(){
 		clearErrMsg('task6-second');
 		var timeFirst = convertToDate(inputFirst);	
 		var timeSecond = convertToDate(inputSecond);
-		if(timeFirst != 'Invalid Date' && timeSecond != 'Invalid Date'){
+		if(timeFirst !== 'Invalid Date' && timeSecond !== 'Invalid Date'){
 			var timeDifference = timeSecond - timeFirst;
 			var result = [
 				Math.floor(timeDifference / 31536000000),
