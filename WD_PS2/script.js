@@ -45,9 +45,9 @@ function getResultTask4(){
 	if(isInt(input)){
 		clearErrMsg('task4');
 		var result = [];
-		result[0] = addingLeadingZeros(String(Math.floor(input / 3600)), 2);
-		result[1] = addingLeadingZeros(String(Math.floor((input % 3600) / 60)), 2);
-		result[2] = addingLeadingZeros(String(input % 60), 2);
+		result[0] = addingLeadingZeros(String(Math.floor(input / 3600)));
+		result[1] = addingLeadingZeros(String(Math.floor((input % 3600) / 60)));
+		result[2] = addingLeadingZeros(String(input % 60));
 		addResult(result[0] + ':' + result[1] + ':' + result[2], 'task4');
 	} else {
 		addErrMsg('enter an integer', 'task4');
@@ -67,7 +67,7 @@ function clearErrMsg(id){
 }
 
 function addingLeadingZeros(val){
-	if(val.length <= 9){
+	if(Number(val) <= 9){
 		val = '0' + val;
 	}
 	return val;
@@ -152,12 +152,12 @@ function isValidDateTask6(input){
 	];
 	var date = convertToDate(input);
 	input = input.split(/,| |:/);
-	return  date.getFullYear()      == input[3]
-			&& date.getDate()       == input[1]
-			&& date.getHours()	    == input[4] 
-			&& date.getMinutes()    == input[5]
-			&& date.getSeconds()    == input[6]
-			&& arr[date.getMonth()] == input[0];
+	return  date.getFullYear()      === input[3]
+			&& date.getDate()       === input[1]
+			&& date.getHours()	    === input[4] 
+			&& date.getMinutes()    === input[5]
+			&& date.getSeconds()    === input[6]
+			&& arr[date.getMonth()] === input[0];
 }
 
 function convertToDate(inputText){
@@ -179,7 +179,7 @@ function getResultTask7(){
 	var month = date.getMonth()+1;
 	if (day < 1 || day > 31) addErrMsg('enter date in format: 2014-12-31', 'task7');
 	else if (month===2 && day>29) addErrMsg('enter date in format: 2014-12-31', 'task7');
-	else if ((month==4||month==6||month==9||month==11) && day>30) addErrMsg('enter date in format: 2014-12-31', 'task4');
+	else if ((month==4||month==6||month===9||month===11) && day>30) addErrMsg('enter date in format: 2014-12-31', 'task4');
 	else if (month===1 && day>=20  || month===2 && day<=18) result="Водолей";
 	else if (month===2 && day>=19  || month===3 && day<=20) result="Рыбы";
 	else if (month===3 && day>=21  || month===4 && day<=19) result="Овен";
@@ -314,7 +314,7 @@ function getResultTask9(){
 	var numApartmentInEntrace = inputFloor * inputApartmentAmount;
 	var resultEntrance = Math.ceil(inputApartment / numApartmentInEntrace);
 	var resultFloor = Math.ceil( (inputApartment % numApartmentInEntrace) / inputApartmentAmount);
-	if(resultFloor == 0) resultFloor = inputFloor;
+	if(resultFloor === 0) resultFloor = inputFloor;
 	addResult(resultEntrance + ' entrance, ' + resultFloor + ' floor', 'task9');
 }
 
