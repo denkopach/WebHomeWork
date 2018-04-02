@@ -24,22 +24,18 @@ function getResultTask2(){
 }
 
 function getResultTask3(){
-	var span = document.createElement('span');
 	var task3 = document.getElementById('task3');
-	task3.innerText = '';
-	task3.appendChild(span);
-	var task3Div = document.getElementById('task3');
 	var stars = "";
 	for(var i = 0; i < 50; i++){
 		for(var j = 0; j <= i; j++){
 			stars = stars + '*';
 		}
 		var br = document.createElement('br');
-		span = document.createElement('span');
+		var span = document.createElement('span');
 		span.className = "span-task3";
 		span.innerText = stars;
 		span.appendChild(br);
-		task3Div.appendChild(span);
+		task3.appendChild(span);
 		stars = "";
 	}
 }
@@ -59,7 +55,7 @@ function getResultTask4(){
 }
 
 function addErrMsg(message, id){
-	document.getElementById('block-error-' + id).innerHTML = message;
+	document.getElementById('block-error-' + id).innerText = message;
 	document.getElementById('block-error-' + id).className = 'block-error-invalid';
 	document.getElementById(id + '-input').className = 'input-is-error';
 	document.getElementById(id + '-input').value = '';
@@ -70,11 +66,9 @@ function clearErrMsg(id){
 	document.getElementById(id + '-input').className = '';
 }
 
-//Universal function for appending leading zeros
-function addingLeadingZeros(val, len){
-	if(val.length < len){
+function addingLeadingZeros(val){
+	if(val.length <= 9){
 		val = '0' + val;
-		val = addingLeadingZeros(val, len);
 	}
 	return val;
 }
@@ -88,7 +82,7 @@ function getResultTask5(){
 		addResult(res, 'task5');
 
 	} else {
-		addErrMsg('enter an integer', 'task4');
+		addErrMsg('enter an integer', 'task5');
 	}
 }
 
@@ -132,9 +126,9 @@ function getStringNameForIntVal(num, str1, str2, str3){
 	var res = '';
 	if(num > 4 && num < 21)
 		return num + str3;
-	else if((num + 10) % 10 === 1)
+	else if(num % 10 === 1)
 		return num + str1;
-	else if((num + 10) % 10 > 1 && (num + 10) % 10 < 5)
+	else if(num % 10 > 1 && num % 10 < 5)
 		return num + str2;
 	else 
 		return num + str3;
@@ -266,7 +260,7 @@ function getResultTask8(){
 	if(isValidInputTask8(input)){
 		clearErrMsg('task8');
 		var task8Div = document.getElementById('div-task8-result');
-		task8Div.innerHTML = '';
+		task8Div.innerText = '';
 		for(var i = 0; i < input[0]; i++){
 			var task8DivNew = document.createElement('div');
 			var br = document.createElement('br');
@@ -295,21 +289,25 @@ function isValidInputTask8(arr){
 }
 
 function getResultTask9(){
+	var errMsg = 'enter an integer';
 	var inputApartment = document.getElementById('task9-apartment-input').value;
+	document.getElementById('task9-apartment-input').value = '';
 	if(!isInt(inputApartment)){
-		addErrMsg('enter an integer', 'task9-apartment');
+		addErrMsg(errMsg, 'task9-apartment');
 		return false;
 	}
 	clearErrMsg('task9-apartment');
 	var inputApartmentAmount = document.getElementById('task9-apartmentAmount-input').value;
+	document.getElementById('task9-apartmentAmount-input').value = '';
 	if(!isInt(inputApartmentAmount)){
-		addErrMsg('enter an integer', 'task9-apartmentAmount');
+		addErrMsg(errMsg, 'task9-apartmentAmount');
 		return false;
 	}
 	clearErrMsg('task9-apartmentAmount');
 	var inputFloor = document.getElementById('task9-floors-input').value;
+	document.getElementById('task9-floors-input').value = '';
 	if(!isInt(inputFloor)){
-		addErrMsg('enter an integer', 'task9-floors');
+		addErrMsg(errMsg, 'task9-floors');
 		return false;
 	}
 	clearErrMsg('task9-floors');
@@ -322,6 +320,7 @@ function getResultTask9(){
 
 function getResultTask10(){
 	var input = document.getElementById('task10-input').value;
+	document.getElementById('task10-input').value = '';
 	var arr = input.split('');
 	if(isInt(input)){
 		clearErrMsg('task10');
@@ -336,6 +335,7 @@ function getResultTask10(){
 
 function getResultTask11(){
 	var input = document.getElementById('task11-textarea').value;
+	if(!input) return false;
 	input = input.split(',').map(function(element){
 		return element.replace('http://', '').replace('https://', '');
 	});
@@ -343,7 +343,7 @@ function getResultTask11(){
 	var ulTask = document.getElementById('task11-ul');
 	for(var i = 0; i < input.length; i++){
 		var el = document.createElement('li');
-		el.innerHTML = input[i];
+		el.innerText = input[i];
 		ulTask.appendChild(el);
 	}
 }

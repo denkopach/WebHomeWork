@@ -9,7 +9,7 @@
 <body>
 	<div class="block">			
 		<div class="block-task-even">
-			<div class="container" id="task1">
+			<div class="container">
 				<h3>Task 1</h3>
 				<p>Let's calculate the sum of numbers from -1000 to 1000</p>
 				<form>
@@ -98,7 +98,7 @@
 				<h3>Task 7</h3>
 				<p>let's find out your zodiac sign</p>
 				<form>
-					<p>enter your date of birth:</p>
+					<p>enter your date of birth (format:2014-12-31):</p>
 					<input type="text" id="task7-input" placeholder="2014-12-31">
 					<div class="block-error-valid" id="block-error-task7"></div>
 					<input type="button" onclick="getResultTask7()" value="Enter">
@@ -114,7 +114,7 @@
 				<p>let's draw a chessboard</p>
 				<div id="div-task8">
 					<form>
-						<p>enter the size of the chessboard</p>
+						<p>enter the size of the chessboard (format: 8x8)</p>
 						<input type="text" id="task8-input" placeholder="8x8">
 						<div class="block-error-valid" id="block-error-task8"></div>
 						<input type="button" onclick="getResultTask8()" value="Enter">
@@ -165,6 +165,7 @@
 				<h3>Task 11</h3>
 				<p>let's clean the url address</p>
 				<form>
+					<p>Enter a comma-separated url</p>
 					<textarea name="" id="task11-textarea" cols="30" rows="10" onBlur='getResultTask11()' placeholder="Enter a comma-separated url"></textarea>
 				</form>
 				<div class="div-task-11">
