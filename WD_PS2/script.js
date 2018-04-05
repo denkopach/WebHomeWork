@@ -134,9 +134,10 @@ function getResultTask6(){
 
 		const timeFirst = convertToDate(inputFirst);	
 		const timeSecond = convertToDate(inputSecond);
-
+		let timeDifference;
 		if(timeFirst !== 'Invalid Date' && timeSecond !== 'Invalid Date'){
-			const timeDifference = timeSecond - timeFirst;
+			timeDifference = Math.abs(timeSecond - timeFirst);
+
 			const result = [
 				Math.floor(timeDifference / 31536000000),
 				Math.floor((timeDifference % 31536000000) / 2592000000),
@@ -147,11 +148,11 @@ function getResultTask6(){
 			];
 			const res = 
 				getStringNameForIntVal(result[0], ' год, ', ' года, ', ' лет, ') +
-				getStringNameForIntVal(Math.abs(result[1]), ' месяц, ', ' месяца, ', ' месяцев, ') +
-				getStringNameForIntVal(Math.abs(result[2]), ' день, ', ' дня, ', ' дней, ') +
-				getStringNameForIntVal(Math.abs(result[3]), ' час, ', ' часа, ', ' часов, ' ) +
-				getStringNameForIntVal(Math.abs(result[4]), ' минута, ', ' минуты, ', ' минут, ' ) +
-				getStringNameForIntVal(Math.abs(result[5]), ' секунда, ', ' секунды, ', ' секунд' );
+				getStringNameForIntVal(result[1], ' месяц, ', ' месяца, ', ' месяцев, ') +
+				getStringNameForIntVal(result[2], ' день, ', ' дня, ', ' дней, ') +
+				getStringNameForIntVal(result[3], ' час, ', ' часа, ', ' часов, ' ) +
+				getStringNameForIntVal(result[4], ' минута, ', ' минуты, ', ' минут, ' ) +
+				getStringNameForIntVal(result[5], ' секунда, ', ' секунды, ', ' секунд' );
 
 			addResult(res, taskId);
 		}
@@ -402,7 +403,7 @@ function getResultTask10(){
 	const inputEl = document.getElementById('task10-input');
 	const errMsg = 'enter an integer greater than zero';
 	const taskId = 'task10';
-	const input = inputEl.value;
+	let input = String(Math.abs(+(inputEl.value)));
 
 	inputEl.value = '';
 	clearErrMsg(taskId);
