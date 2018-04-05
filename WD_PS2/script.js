@@ -1,25 +1,27 @@
 function getResultTask1(){
-	var amount = 0;
+	let amount = 0;
+	const taskId = 'task1';
 
-	for(var i = -1000; i <= 1000; i++){
+	for(let i = -1000; i <= 1000; i++){
 		amount = amount + i;
 	}
 
-	addResult(amount, 'task1');
+	addResult(amount, taskId);
 }
 
 function addResult(result, id){
-	var spanResult = document.getElementById('result-' + id);
+	let spanResult = document.getElementById('result-' + id);
 
 	spanResult.className = 'span-result';
 	spanResult.innerText = result;
 }
 
 function getResultTask2(){
-	var amount = 0;
+	let amount = 0;
+	const taskId = 'task2';
 
-	for(var i = -1000; i <= 1000; i++){
-		var n = Math.abs(i);
+	for(let i = -1000; i <= 1000; i++){
+		let n = Math.abs(i);
 
 		if((n) % 10 === 2
 			|| n % 10 === 3
@@ -30,20 +32,20 @@ function getResultTask2(){
 			
 	}
 
-	addResult(amount, 'task2');
+	addResult(amount, taskId);
 }
 
 function getResultTask3(){
-	var task3 = document.getElementById('task3');
-	var stars = '';
+	let task3 = document.getElementById('task3');
+	let stars = '';
 
-	for(var i = 0; i < 50; i++){
-		for(var j = 0; j <= i; j++){
+	for(let i = 0; i < 50; i++){
+		for(let j = 0; j <= i; j++){
 			stars = stars + '*';
 		}
 
-		var br = document.createElement('br');
-		var span = document.createElement('span');
+		const br = document.createElement('br');
+		const span = document.createElement('span');
 
 		span.className = 'span-task3';
 		span.innerText = stars;
@@ -54,62 +56,71 @@ function getResultTask3(){
 }
 
 function getResultTask4(){
-	var input = document.getElementById('task4-input').value;
+	let input = document.getElementById('task4-input').value;
+	const taskId = 'task4';
+	const errMsg = 'enter a positive integer';
 
 	if(isPositiveInt(input)){
-		clearErrMsg('task4');
-		var result = [];
+		clearErrMsg(taskId);
+		let result = [];
 
 		result[0] = addingLeadingZeros(String(Math.floor(input / 3600)));
 		result[1] = addingLeadingZeros(String(Math.floor((input % 3600) / 60)));
 		result[2] = addingLeadingZeros(String(input % 60));
 
-		addResult(result[0] + ':' + result[1] + ':' + result[2], 'task4');
+		addResult(`${result[0]}:${result[1]}:${result[2]}`, taskId);
 
 	} else {
-		addErrMsg('enter an integer', 'task4');
+		addErrMsg(errMsg, taskId);
 	}
 }
 
 function addErrMsg(message, id){
-	document.getElementById('block-error-' + id).innerText = message;
-	document.getElementById('block-error-' + id).className = 'block-error-invalid';
-	document.getElementById(id + '-input').className = 'input-is-error';
-	document.getElementById(id + '-input').value = '';
+	const div = document.getElementById(`block-error-${id}`);
+
+	div.innerText = message;
+	div.className = 'block-error-invalid';
+
+	const input = document.getElementById(`${id}-input`);
+
+	input.className = 'input-is-error';
+	input.value = '';
 }
 
 function clearErrMsg(id){
-	document.getElementById('block-error-' + id).className = 'block-error-valid';
-	document.getElementById(id + '-input').className = '';
+	document.getElementById(`block-error-${id}`).className = 'block-error-valid';
+	document.getElementById(`${id}-input`).className = '';
 }
 
 function addingLeadingZeros(val){
-	if(Number(val) <= 9){
-		val = '0' + val;
+	if(+val <= 9){
+		val = `0${val}`;
 	}
 
 	return val;
 }
 
 function getResultTask5(){
-	var input = document.getElementById('task5-input').value;
+	const input = document.getElementById('task5-input').value;
+	const taskId = 'task5';
+	const errMsg = 'enter a positiv integer';
 
 	if(isPositiveInt(input)){
-		clearErrMsg('task5');
+		clearErrMsg(taskId);
 
-		var res = getStringNameForIntVal(input, ' год', ' года', ' лет');
-		addResult(res, 'task5');
+		const res = getStringNameForIntVal(input, ' год', ' года', ' лет');
+		addResult(res, taskId);
 
 	} else {
-		addErrMsg('enter an integer', 'task5');
+		addErrMsg(errMsg, taskId);
 	}
 }
 
 function getResultTask6(){
-
-	var inputFirst = document.getElementById('task6-first-input').value;
-	var inputSecond = document.getElementById('task6-second-input').value;
-	var errMsg = 'enter date in format: October 13, 2014 11:13:00';
+	const inputFirst = document.getElementById('task6-first-input').value;
+	const inputSecond = document.getElementById('task6-second-input').value;
+	const errMsg = 'enter date in format: October 13, 2014 11:13:00';
+	const taskId = 'task6';
 
 	if (!isValidDateTask6(inputFirst)){
 		addErrMsg(errMsg, 'task6-first');
@@ -121,12 +132,12 @@ function getResultTask6(){
 		clearErrMsg('task6-first');
 		clearErrMsg('task6-second');
 
-		var timeFirst = convertToDate(inputFirst);	
-		var timeSecond = convertToDate(inputSecond);
+		const timeFirst = convertToDate(inputFirst);	
+		const timeSecond = convertToDate(inputSecond);
 
-		if(timeFirst != 'Invalid Date' && timeSecond != 'Invalid Date'){
-			var timeDifference = timeSecond - timeFirst;
-			var result = [
+		if(timeFirst !== 'Invalid Date' && timeSecond !== 'Invalid Date'){
+			const timeDifference = timeSecond - timeFirst;
+			const result = [
 				Math.floor(timeDifference / 31536000000),
 				Math.floor((timeDifference % 31536000000) / 2592000000),
 				Math.floor(((timeDifference % 31536000000) % 2592000000) / 86400000),
@@ -134,7 +145,7 @@ function getResultTask6(){
 				Math.floor(((((timeDifference % 31536000000) % 2592000000) % 86400000) % 3600000) / 60000),
 				Math.floor((((((timeDifference % 31536000000) % 2592000000) % 86400000) % 3600000) % 60000) / 1000)
 			];
-			var res = 
+			const res = 
 				getStringNameForIntVal(result[0], ' год, ', ' года, ', ' лет, ') +
 				getStringNameForIntVal(Math.abs(result[1]), ' месяц, ', ' месяца, ', ' месяцев, ') +
 				getStringNameForIntVal(Math.abs(result[2]), ' день, ', ' дня, ', ' дней, ') +
@@ -142,13 +153,13 @@ function getResultTask6(){
 				getStringNameForIntVal(Math.abs(result[4]), ' минута, ', ' минуты, ', ' минут, ' ) +
 				getStringNameForIntVal(Math.abs(result[5]), ' секунда, ', ' секунды, ', ' секунд' );
 
-			addResult(res, 'task6');
+			addResult(res, taskId);
 		}
 	}
 }
 
 function getStringNameForIntVal(num, str1, str2, str3){
-	var res = '';
+	let res = '';
 
 	if(num > 4 && num < 21){
 		return num + str3;
@@ -169,7 +180,7 @@ function getStringNameForIntVal(num, str1, str2, str3){
 
 //format date is October 13, 2014 11:13:00
 function isValidDateTask6(input){
-	var arr = [
+	const arrMonth = [
 		'January',
 		'February',
 		'March',
@@ -183,20 +194,20 @@ function isValidDateTask6(input){
 		'November',
 		'December'
 	];
-	var date = convertToDate(input);
+	const date = convertToDate(input);
 
 	input = input.split(/,| |:/);
 
-	return  date.getFullYear()      == input[3]
-			&& date.getDate()       == input[1]
-			&& date.getHours()	    == input[4] 
-			&& date.getMinutes()    == input[5]
-			&& date.getSeconds()    == input[6]
-			&& arr[date.getMonth()] == input[0];
+	return  date.getFullYear()      === +input[3]
+			&& date.getDate()       === +input[1]
+			&& date.getHours()	    === +input[4] 
+			&& date.getMinutes()    === +input[5]
+			&& date.getSeconds()    === +input[6]
+			&& arrMonth[date.getMonth()] === input[0];
 }
 
 function convertToDate(inputText){
-	var d = new Date();
+	let d = new Date();
 
 	d.setTime(Date.parse(inputText));
 
@@ -204,132 +215,130 @@ function convertToDate(inputText){
 }
 	
 function getResultTask7(){
-	document.getElementById('task7-iconsZodiak').src = '';
-	var input = document.getElementById('task7-input').value;
+	const taskId = 'task7';
+	const errMsg = 'enter realy date in format: 2014-12-31';
+	
+	const imgEl = document.getElementById(`${taskId}-iconsZodiak`);
+	const inputEl = document.getElementById(`${taskId}-input`); 
+	
+	const input = inputEl.value.split('-');
+	const day = +input[2];
+	const month = +input[1];
 
-	document.getElementById('task7-input').value = '';
-	clearErrMsg('task7');
-
-	input = input.split('-');
-	var day = input[2];
-	var month = input[1];
+	imgEl.src = '';
+	inputEl.value = '';
+	clearErrMsg(taskId);
 
 	if (day < 1 || day > 31) {
-		addErrMsg('enter date in format: 2014-12-31', 'task7');
+		addErrMsg(errMsg, taskId);
 		return false;
-	}else if (month==2 && day>29) {
-		addErrMsg('enter date in format: 2014-12-31', 'task7');
+	}else if (month == 2 && day > 29) {
+		addErrMsg(errMsg, taskId);
 		return false;
-	}else if ((month==4||month==6||month===9||month===11) && day>30) {
-		addErrMsg('enter date in format: 2014-12-31', 'task4');
+	}else if ((month === 4||month === 6 || month === 9 || month === 11) && day > 30) {
+		addErrMsg(errMsg, taskId);
 		return false;
-	}else if (month==1 && day>=20  || month==2 && day<=18) {
-		result='Водолей';
-	}else if (month==2 && day>=19  || month==3 && day<=20) {
-		result='Рыбы';
-	}else if (month==3 && day>=21  || month==4 && day<=19) {
-		result='Овен';
-	}else if (month==4 && day>=20  || month==5 && day<=20) {
-		result='Телец';
-	}else if (month==5 && day>=21  || month==6 && day<=21) {
-		result='Близнецы';
-	}else if (month==6 && day>=22  || month==7 && day<=22) {
-		result='Рак';
-	}else if (month==7 && day>=23  || month==8 && day<=22) {
-		result='Лев';
-	}else if (month==8 && day>=23  || month==9 && day<=22) {
-		result='Дева';
-	}else if (month==9 && day>=23  || month==10 && day<=22) {
-		result='Весы';
-	}else if (month==10 && day>=23 || month==11 && day<=21) {
-		result='Скорпион';
-	}else if (month==11 && day>=22 || month==12 && day<=21) {
-		result='Стрелец';
-	}else if (month==12 && day>=22 || month==1 && day<=19) {
-		result='Козерог';
+	}else if (month === 1 && day >= 20  || month === 2 && day <= 18) {
+		result = 'Aquarius';
+	}else if (month === 2 && day >= 19  || month === 3 && day <= 20) {
+		result = 'fish';
+	}else if (month === 3 && day >= 21  || month === 4 && day <= 19) {
+		result = 'Aries';
+	}else if (month === 4 && day >= 20  || month === 5 && day <= 20) {
+		result = 'Taurus';
+	}else if (month === 5 && day >= 21  || month === 6 && day <= 21) {
+		result = 'Twins';
+	}else if (month === 6 && day >= 22  || month === 7 && day <= 22) {
+		result = 'Cancer';
+	}else if (month === 7 && day >= 23  || month === 8 && day <= 22) {
+		result = 'lion';
+	}else if (month === 8 && day >= 23  || month === 9 && day <= 22) {
+		result = 'Virgo';
+	}else if (month === 9 && day >= 23  || month === 10 && day <= 22) {
+		result = 'Libra';
+	}else if (month === 10 && day >= 23 || month === 11 && day <= 21) {
+		result = 'Scorpio';
+	}else if (month === 11 && day >= 22 || month === 12 && day <= 21) {
+		result = 'Sagittarius';
+	}else if (month === 12 && day >= 22 || month === 1 && day <= 19) {
+		result = 'Capricorn';
 	}else {
-		addErrMsg('enter date in format: 2014-12-31', 'task7');
+		addErrMsg(errMsg, taskId);
 		return false;
 	}
 
-	var imgName;
+	let imgName;
 	switch(result) {
-		case 'Водолей':
+		case 'Aquarius':
 			imgName = '1';
 			break;
-		case 'Рыбы':
+		case 'fish':
 			imgName = '2';
 			break;
-		case 'Овен':
+		case 'Aries':
 			imgName = '3';
 			break;
-		case 'Телец':
+		case 'Taurus':
 			imgName = '4';
 			break;
-		case 'Близнецы':
+		case 'Twins':
 			imgName = '5';
 			break;
-		case 'Рак':
+		case 'Cancer':
 			imgName = '6';
 			break;
-		case 'Лев':
+		case 'lion':
 			imgName = '7';
 			break;
-		case 'Дева':
+		case 'Virgo':
 			imgName = '8';
 			break;
-		case 'Весы':
+		case 'Libra':
 			imgName = '9';
 			break;
-		case 'Скорпион':
+		case 'Scorpio':
 			imgName = '10';
 			break;
-		case 'Стрелец':
+		case 'Sagittarius':
 			imgName = '11';
 			break;
-		case 'Козерог':
+		case 'Capricorn':
 			imgName = '12';
 			break;
 	}
 
-	addResult(result, 'task7');
-	document.getElementById('task7-iconsZodiak').src = 'icons/' + imgName + '.png';
-}
-
-function isValidDateTask7(str){
-	var re = /^(19|20)[0-9]{2}-[0|1][0-9]-[0-3][0-9]/;
-
-	if(!str || !re.test(str)) {
-		return false;
-	}
-
-	str = str.split('-');
-
-	if (str.length != 3){
-		return false;
-	}
-
-	return true;
+	addResult(result, taskId);
+	imgEl.src = `icons/${imgName}.png`;
 }
 
 function getResultTask8(){
-	var input = document.getElementById('task8-input').value;
-	document.getElementById('task8-input').value = '';
-	input = input.split(/x/);
+	const onputEl = document.getElementById('task8-input');
+	const msgAskConfirm = 'This may take a while. Continue?';
+	const taskId = 'task8';
+	const errMsg = 'input format is: 8x8';
+	let isСonfirm = true;
+	let input = onputEl.value.split(/x/);
 
-	if(isValidInputTask8(input)){
+	onputEl.value = '';
+
+	if(input[0] > 500 || input[1] > 500){
+		isСonfirm = confirm(msgAskConfirm);
+	}
+
+	if(isValidInputTask8(input) && isСonfirm){
 		clearErrMsg('task8');
-		var task8Div = document.getElementById('div-task8-result');
+		let task8Div = document.getElementById('div-task8-result');
+		
 		task8Div.innerText = '';
 
-		for(var i = 0; i < input[0]; i++){
-			var task8DivNew = document.createElement('div');
-			var br = document.createElement('br');
+		for(let i = 0; i < input[0]; i++){
+			const task8DivNew = document.createElement('div');
+			const br = document.createElement('br');
 			task8DivNew.className = 'task8-line';
 			task8Div.appendChild(task8DivNew);
 
-			for(var j = 0; j < input[1]; j++){
-				var divCell = document.createElement('div');
+			for(let j = 0; j < input[1]; j++){
+				const divCell = document.createElement('div');
 
 				if((j + i + 2) % 2 === 0) {
 					divCell.className = 'div-task8-cell-odd';
@@ -342,106 +351,95 @@ function getResultTask8(){
 			}
 		}
 	}else {
-		addErrMsg('input format is: 8x8', 'task8');
+		addErrMsg(errMsg, taskId);
 	}
 }
 
 function isValidInputTask8(arr){
-	if (!arr || !arr[1]) {
+	return (arr && arr[1] && arr[0] > 0 && arr[1] > 0);
+}
+
+function getInputElVal(idEl, errMsg){
+	const inputEl = document.getElementById(`${idEl}-input`);
+	const inputVal = inputEl.value;
+
+	inputEl.value = '';
+
+	if(!isPositiveInt(inputVal)){
+		addErrMsg(errMsg, idEl);
 		return false;
 	}
-
-	if (arr[0] < 0 || arr[1] < 0){
-		return false;
-	}
-
-	return true;
+	clearErrMsg(idEl);
+	return inputVal;
 }
 
 function getResultTask9(){
-	var errMsg = 'enter an integer';
-	var inputApartment = document.getElementById('task9-apartment-input').value;
-
-	document.getElementById('task9-apartment-input').value = '';
-
-	if(!isPositiveInt(inputApartment)){
-		addErrMsg(errMsg, 'task9-apartment');
-		return false;
-	}
-	clearErrMsg('task9-apartment');
+	const errMsg = 'enter an integer';
+	const taskId = 'task9';
 	
-	var inputApartmentAmount = document.getElementById('task9-apartmentAmount-input').value;
-	document.getElementById('task9-apartmentAmount-input').value = '';
+	const inputApartment = getInputElVal('task9-apartment', errMsg);
+	const inputApartmentAmount = getInputElVal('task9-apartmentAmount', errMsg);
+	const inputFloor = getInputElVal('task9-floors', errMsg);
+	const inputEntrance = getInputElVal('task9-entrance', errMsg);
 
-	if(!isPositiveInt(inputApartmentAmount)){
-		addErrMsg(errMsg, 'task9-apartmentAmount');
+	const numApartmentInEntrace = inputFloor * inputApartmentAmount;
+	const resultEntrance = Math.ceil(inputApartment / numApartmentInEntrace);
+
+	if(inputEntrance < resultEntrance){
+		addResult('there is no such entrance', taskId);
 		return false;
 	}
-	clearErrMsg('task9-apartmentAmount');
-	
-	var inputFloor = document.getElementById('task9-floors-input').value;
-	document.getElementById('task9-floors-input').value = '';
 
-	if(!isPositiveInt(inputFloor)){
-		addErrMsg(errMsg, 'task9-floors');
-		return false;
-	}
-	clearErrMsg('task9-floors');
-
-	var numApartmentInEntrace = inputFloor * inputApartmentAmount;
-	var resultEntrance = Math.ceil(inputApartment / numApartmentInEntrace);
-	var resultFloor = Math.ceil( (inputApartment % numApartmentInEntrace) / inputApartmentAmount);
+	let resultFloor = Math.ceil( (inputApartment % numApartmentInEntrace) / inputApartmentAmount);
 
 	if(resultFloor === 0) {
 		resultFloor = inputFloor;
 	}
-	addResult(resultEntrance + ' entrance, ' + resultFloor + ' floor', 'task9');
+	addResult(`${resultEntrance} entrance, ${resultFloor} floor`, taskId);
 }
 
 function getResultTask10(){
-	var input = document.getElementById('task10-input').value;
-	var arr = input.split('');
-	alert(typeof(input));
+	const inputEl = document.getElementById('task10-input');
+	const errMsg = 'enter an integer greater than zero';
+	const taskId = 'task10';
+	const input = inputEl.value;
 
-	document.getElementById('task10-input').value = '';
+	inputEl.value = '';
+	clearErrMsg(taskId);
 
 	if(isPositiveInt(input)){
-		clearErrMsg('task10');
-		var result = input.split('').map(Number).reduce(function (a, b) {
-            return a + b;
-        }, 0);
+		const result = input.split('')
+					.map(Number)
+					.reduce(function (a, b) {
+            			return a + b;
+       				 }, 0);
 
-		addResult(result, 'task10');
+		addResult(result, taskId);
 	} else {
-		addErrMsg('enter an integer greater than zero', 'task10');
+		addErrMsg(errMsg, taskId);
 	}
 }
 
 function getResultTask11(){
-	var input = document.getElementById('task11-textarea').value;
+	let input = document.getElementById('task11-textarea').value;
+	let ulTask = document.getElementById('task11-ul');
 
-	if(!input) {
-		return false;
-	}
-
-	input = input.split(',').map(function(element){
-		return element.replace('http://', '').replace('https://', '');
-	});
-
-	input = input.sort();
-
-	var ulTask = document.getElementById('task11-ul');
-
-	for(var i = 0; i < input.length; i++){
-		var el = document.createElement('li');
-		var a = document.createElement('a');
-		a.href = 'http://' + input[i];
-		a.innerText = input[i];
-		el.appendChild(a);
-		ulTask.appendChild(el);
+	if(input) {
+		input = input.split(',')
+					.filter(link => !!link)
+					.map(link => link.replace(/https?:\/\//, ''))
+					.sort()
+					.forEach(function(link){
+						let liEl = document.createElement('li');
+						let aEl = document.createElement('a');
+						aEl.href = `//${link}`;
+						aEl.innerText = link;
+						liEl.appendChild(aEl);
+						ulTask.appendChild(liEl);
+					});
 	}
 }
 
 function isPositiveInt(input){
-	return input && Number.isInteger(Number(input)) && input > 0;
+	return +input && input > 0;
 }
