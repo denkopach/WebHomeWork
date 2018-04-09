@@ -6,9 +6,17 @@ $(document).ready(function(){
         $('body,html').animate({scrollTop: top}, 500);
     });
     
+
     $('#up').on("click", function() {
         $('body, html').animate({scrollTop: 0},500);
         return false;
     });
-})
 
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            $('#up').show('slow');
+        }else{
+            $('#up').hide('slow');
+        }
+    });
+})

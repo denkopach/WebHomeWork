@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	addList();
+
 	$('.dropdown').on('click', 'ul', function(event) {
 		const dropdownListEl = $('.dropdown_list');
 		dropdownListEl.slideToggle('fast');

@@ -198,9 +198,10 @@ input.buy:active {
 }
 .button-up{
 	position: fixed;
-	bottom:50px;
-	right:50px;
+	bottom:0;
+	right:0;
 	cursor:pointer;
+	display: none;
 }
 .button-up img{
 	width: 100px;
