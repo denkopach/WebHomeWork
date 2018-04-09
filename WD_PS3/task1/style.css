@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.dropdown{
+	width: 200px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+ul li{
+	padding: 5px;
+	list-style-type: none;
+}
+ul img{
+	width: 24px;
+	vertical-align: middle;
+	padding: 5px;
+}
+.liFocus{
+	background: white;
+}
+.dropdown_list{
+	display: none;
+}
+.selected-friends{
+	color: #808080;
+	line-height: 2.5em;
+}
+.displayNone{
+	display: none;
+}
+button{
+	width: 200px;
+	height: 20px;
+}
