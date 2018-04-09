@@ -49,6 +49,6 @@ function addList(){
 		$('.dropdown_list').append($('<li></li>')
 					.text(item[0])
 					.prepend($(`<img src="icons/${item[1]}.ico" alt="">`))
-					);
+		);
 	});
 };
