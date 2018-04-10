@@ -13,11 +13,13 @@
     border: 1px solid #000;
     border-radius: 10px;
     overflow: hidden;
+    cursor: pointer;
 }
 ul li{
 	padding: 5px;
 	width: 100%;
 	list-style-type: none;
+	background: #C0C0C0;
 }
 ul img{
 	width: 29px;

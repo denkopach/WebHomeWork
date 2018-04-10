@@ -1,23 +1,36 @@
 $(document).ready(function() {
 	addList();
 
-	$('.dropdown').on('click', 'ul', function(event) {
-		const dropdownListEl = $('.dropdown_list');
-		dropdownListEl.slideToggle('fast');
-		
-		const enterItemEl = $('.enter_item');	
+	const dropdownListEl = $('.dropdown_list');
+	const enterItemEl = $('.enter_item');
+	let clickCheck = false;
+
+	$(document).on('click', function(event) {
 		const targetEl = $(event.target);
-		const findElActive = dropdownListEl.find('.item_active');
+		if(targetEl.is('li')){
+			if(clickCheck){
+				return false;
+			}
+			
+			const findElActive = dropdownListEl.find('.item_active');
 
-		findElActive.removeClass('item_active');
-		targetEl.addClass('item_active');
+			clickCheck = true;
 
-		if (!dropdownListEl.find('li').is(".item_active")){
-			return;
+			dropdownListEl.slideToggle('fast', function(){
+				clickCheck = false;
+			});
+			findElActive.removeClass('item_active');
+			targetEl.addClass('item_active');
+
+			if (!dropdownListEl.find('li').is('.item_active')){
+				return;
+			}
+
+			enterItemEl.find('.item_active').remove();
+			enterItemEl.append($('.dropdown_list').find('.item_active').clone());
+		}else{
+			dropdownListEl.hide('fast');
 		}
-
-		enterItemEl.find('.item_active').remove();
-		enterItemEl.append($('.dropdown_list').find('.item_active').clone());
 	});
 
 	$('.dropdown_list').on('mouseenter', 'li', function() {
@@ -30,7 +43,7 @@ $(document).ready(function() {
 });
 
 function getSelectText(){
-	var res = $('#selected').find('li').text();
+	let res = $('#selected').find('li').text();
 	if(res === 'Selected friends'){
 		return false;
 	}
@@ -38,17 +51,19 @@ function getSelectText(){
 }
 
 function addList(){
-	const nameArr = [
-		['Jenny Hess', 'alien'],
-		['Elliot Fu', 'dracula'],
-		['Stevie Feliciano', 'scream'],
-		['Christian', 'skull'],
-		['Matt', 'squash']
+	const friendsArr = [
+		{name: 'Jenny Hess', img: 'alien'},
+		{name: 'Elliot Fu', img: 'dracula'},
+		{name: 'Stevie Feliciano', img: 'scream'},
+		{name: 'Christian', img: 'skull'},
+		{name: 'Matt', img: 'squash'}
 	];
-	nameArr.forEach(function(item){
+	
+	friendsArr.forEach(function(friend){
 		$('.dropdown_list').append($('<li></li>')
-					.text(item[0])
-					.prepend($(`<img src="icons/${item[1]}.ico" alt="">`))
+					.text(friend.name)
+					.prepend($(`<img src="icons/${friend.img}.ico">`))
 		);
 	});
+	
 };
