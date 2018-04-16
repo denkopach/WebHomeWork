@@ -5,7 +5,7 @@ $(document).ready(function(){
     $('#menu').on('click','a', function (event) {
         
         event.preventDefault();
-        var id  = $(this).attr('href'),
+        const id  = $(this).attr('href'),
             top = $(id).offset().top - $('div.block-header').height();
         $(page).animate({scrollTop: top}, 500);
 
