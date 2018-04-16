@@ -3,21 +3,23 @@ $(document).ready(function() {
 
 	const dropdownListEl = $('.dropdown_list');
 	const enterItemEl = $('.enter_item');
-	let clickCheck = false;
+	let flagAnimate = false;
 
 	$(document).on('click', function(event) {
+		
 		const targetEl = $(event.target);
-		if(targetEl.is('li')){
-			if(clickCheck){
+
+		if(targetEl.is('#drpdwn li')){
+			if(flagAnimate){
 				return false;
 			}
 			
 			const findElActive = dropdownListEl.find('.item_active');
 
-			clickCheck = true;
+			flagAnimate = true;
 
 			dropdownListEl.slideToggle('fast', function(){
-				clickCheck = false;
+				flagAnimate = false;
 			});
 			findElActive.removeClass('item_active');
 			targetEl.addClass('item_active');
@@ -33,17 +35,20 @@ $(document).ready(function() {
 		}
 	});
 
-	$('.dropdown_list').on('mouseenter', 'li', function() {
-		$(this).addClass('liFocus');
-	});
-	$('.dropdown_list').on('mouseleave', 'li', function() {
-		$(this).removeClass('liFocus');	
-	});
+	$('.dropdown_list li').hover(
+		function(){
+			$(this).addClass('liFocus');
+		},
+		function(){
+			$(this).removeClass('liFocus');
+		});
 
 });
 
 function getSelectText(){
+	
 	let res = $('#selected').find('li').text();
+	
 	if(res === 'Selected friends'){
 		return false;
 	}
@@ -51,6 +56,7 @@ function getSelectText(){
 }
 
 function addList(){
+	
 	const friendsArr = [
 		{name: 'Jenny Hess', img: 'alien'},
 		{name: 'Elliot Fu', img: 'dracula'},
