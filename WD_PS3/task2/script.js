@@ -1,6 +1,8 @@
 $(document).ready(function(){
     
     const page = $("html, body");
+    const up = $('#up');
+    const speedAnimate = 'slow';
 
     $('#menu').on('click','a', function (event) {
         
@@ -15,21 +17,21 @@ $(document).ready(function(){
     $(window).scroll(function () {
         
         if ($(this).scrollTop() > 100) {
-            $('#up').show('slow');
+            up.show(speedAnimate);
         }else{
-            $('#up').hide('slow');
+            up.hide(speedAnimate);
         }
 
         return false;
     });
 
-    $( "#up" ).click(function(e) {
+    up.click(function(e) {
 
        page.on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function(){
            page.stop();
        });
 
-       page.animate({ scrollTop: 0 }, 'slow', function(){
+       page.animate({ scrollTop: 0 }, speedAnimate, function(){
            page.off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove");
        });
 

@@ -1,48 +1,48 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
-.content{
+.content {
 	padding-top:  20px;
     margin-left: -100px;
     left:  50%;
     position: absolute;
 }
-.dropdown{
+.dropdown {
 	width: 200px;
     border: 1px solid #000;
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
 }
-ul li{
+ul li {
 	padding: 5px;
 	width: 100%;
 	list-style-type: none;
 	background: #C0C0C0;
 }
-ul img{
+ul img {
 	width: 29px;
 	vertical-align: middle;
 	padding: 5px;
 }
-.liFocus{
+.liFocus {
 	background: white;
 }
-.dropdown_list{
+.dropdown_list {
 	display: none;
 }
-.selected-friends{
+.selected-friends {
 	color: #808080;
 	line-height: 2.5em;
 }
-.displayNone{
+.displayNone {
 	display: none;
 }
-.enter_item{
+.enter_item {
 	display: -webkit-box;
 }
-.img-down-icon{
+.img-down-icon {
 	position: absolute;
     right: 0;
     margin-top: 5px;

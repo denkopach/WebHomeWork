@@ -29,7 +29,7 @@ $(document).ready(function() {
 			}
 
 			enterItemEl.find('.item_active').remove();
-			enterItemEl.append($('.dropdown_list').find('.item_active').clone());
+			enterItemEl.append(dropdownListEl.find('.item_active').clone());
 		}else{
 			dropdownListEl.hide('fast');
 		}
@@ -38,10 +38,10 @@ $(document).ready(function() {
 	$('.dropdown_list li').hover(
 		function(){
 			$(this).addClass('liFocus');
-		},
-		function(){
+		}, function(){
 			$(this).removeClass('liFocus');
-		});
+		}
+	);
 
 });
 
@@ -66,7 +66,7 @@ function addList(){
 	];
 	
 	friendsArr.forEach(function(friend){
-		$('.dropdown_list').append($('<li></li>')
+		dropdownListEl.append($('<li></li>')
 					.text(friend.name)
 					.prepend($(`<img src="icons/${friend.img}.ico">`))
 		);
