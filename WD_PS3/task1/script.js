@@ -38,10 +38,10 @@ $(document).ready(function() {
 	$('.dropdown_list li').hover(
 		function(){
 			$(this).addClass('liFocus');
-		}, function(){
+		},
+		function(){
 			$(this).removeClass('liFocus');
-		}
-	);
+		});
 
 });
 
@@ -66,7 +66,7 @@ function addList(){
 	];
 	
 	friendsArr.forEach(function(friend){
-		dropdownListEl.append($('<li></li>')
+		$('.dropdown_list').append($('<li></li>')
 					.text(friend.name)
 					.prepend($(`<img src="icons/${friend.img}.ico">`))
 		);
