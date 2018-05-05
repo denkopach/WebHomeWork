@@ -44,12 +44,16 @@ const ATM = {
 
     logAdd: function(str){
         const now = new Date();
-        const dateNow = now.getDay().toString().padStart(2, "0") + '.' + 
-                        now.getMonth().toString().padStart(2, "0") + '.' + 
-                        now.getFullYear().toString().padStart(4, "0") + ' ' + 
-                        now.getHours().toString().padStart(2, "0") + ':' + 
-                        now.getMinutes().toString().padStart(2, "0") + ':' + 
-                        now.getSeconds().toString().padStart(2, "0");
+        function addLeadingZeros(val, lenNum = 2){
+            return val.toString().padStart(lenNum, "0");
+        }
+        
+        const dateNow = addLeadingZeros(now.getDay()) + '.' + 
+                        addLeadingZeros(now.getMonth()) + '.' + 
+                        addLeadingZeros(now.getFullYear(), 4) + ' ' + 
+                        addLeadingZeros(now.getHours()) + ':' + 
+                        addLeadingZeros(now.getMinutes()) + ':' + 
+                        addLeadingZeros(now.getSeconds());
         this.logging.push(dateNow + ' ' + str);
         console.log(str);
     },
