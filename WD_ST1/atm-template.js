@@ -176,7 +176,9 @@ const ATM = {
     // get report about cash actions - available for admin only - EXTENDED
     getReport: function() {
         if(this.checkAutorized() && this.checkAdmin()){
-            console.log(this.logging);
+            this.logging.forEach(function(value){
+                console.log(value);
+            });
         }
     },
     
