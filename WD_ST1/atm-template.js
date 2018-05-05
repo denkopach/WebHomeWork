@@ -13,18 +13,54 @@ const ATM = {
     logging: [],
     loggingAmount: 0,
 
+    report: [
+      //0
+      `ERROR! reauthorization attempt`,
+      //1
+      `ERROR! user or password is incorrect`,
+      //2
+      `authorized at an ATM as `,
+      //3
+      `ERROR! a wrong number is entered`,
+      //4
+      `ERROR! Authorisation Error`,
+      //5
+      `ERROR! attempt to access the admin functions`,
+      //6
+      `ERROR! attempt to access the user functions`,
+      //7
+      `ERROR! attempt to withdraw money exceeding the user's account`,
+      //8
+      `ERROR! attempt to withdraw the amount exceeding the ATM account`,
+      //9  take off money
+      ` take off `,
+      //10 put money user
+      ` put `,
+      //11 put money admin
+      ` put in ATM account - `,
+      //12 logout
+      ` logout`
+    ],
+
     logAdd: function(str){
-        this.logging[this.loggingAmount++] = str;
+        const now = new Date();
+        const dateNow = now.getDay().toString().padStart(2, "0") + '.' + 
+                        now.getMonth().toString().padStart(2, "0") + '.' + 
+                        now.getFullYear().toString().padStart(4, "0") + ' ' + 
+                        now.getHours().toString().padStart(2, "0") + ':' + 
+                        now.getMinutes().toString().padStart(2, "0") + ':' + 
+                        now.getSeconds().toString().padStart(2, "0");
+        this.logging.push(dateNow + ' ' + str);
         console.log(str);
     },
 
-    // authorization
+    // authorization    
     auth: function(number, pin) {
         let log = '';
         let current_user = false;
 
         if(this.is_auth) {
-            log = `ERROR! reauthorization attempt`;
+            log = this.report[0];
         }else{
             this.users.find(function(userCurrent, index){
                 if(number === userCurrent.number){
@@ -34,14 +70,14 @@ const ATM = {
             });
             this.current_user = current_user;
             if(current_user === false){
-                log = `ERROR! user or password is incorrect`;
+                log = this.report[1];
             } else if(this.users[this.current_user].pin === pin){
                 this.is_auth = true;
                 this.current_type = this.users[this.current_user].type;
 
-                log = `authorized at an ATM as ${this.users[this.current_user].number}`;
+                log = this.report[2] + this.users[this.current_user].number;
             }else{
-                log = `ERROR! user or password is incorrect`;
+                log = this.report[1];
             }
         }
 
@@ -53,8 +89,7 @@ const ATM = {
             return true;
         }
 
-        log = `ERROR! a wrong number is entered`;
-        this.logAdd(log);
+        this.logAdd(this.report[3]);
         
         return false;
     },
@@ -65,8 +100,7 @@ const ATM = {
             return true;
         }else{
             
-            log = `ERROR! Authorisation Error`;
-            this.logAdd(log);
+            this.logAdd(this.report[4]);
             
             return false;
         }
@@ -74,8 +108,7 @@ const ATM = {
     //admin type checking
     checkAdmin: function(){
         if(this.current_type !== 'admin'){
-            log = `ERROR! attempt to access the admin functions`;
-            this.logAdd(log);
+            this.logAdd(this.report[5]);
             
             return false;
         }
@@ -87,8 +120,7 @@ const ATM = {
     checkUser: function(){
         if(this.current_type !== 'user'){
             
-            log = `ERROR! attempt to access the user functions`;
-            this.logAdd(log);
+            this.logAdd(this.report[6]);
             
             return false;
         }
@@ -107,16 +139,16 @@ const ATM = {
         if(this.checkAutorized() && this.checkUser() && this.checkPosInt(amount)){
             
             if(this.users[this.current_user].debet < amount){
-                log = `ERROR! attempt to withdraw money exceeding the user's account`;
+                log = this.report[7];
             
             }else if (this.cash < amount){
-                log = `ERROR! attempt to withdraw the amount exceeding the ATM account`;
+                log = this.report[8];
             
             }else{
                 this.users[this.current_user].debet = this.users[this.current_user].debet - amount;
                 this.cash = this.cash - amount;
                 
-                log = `${this.users[this.current_user].number} take off ${amount} dolars`;
+                log = this.users[this.current_user].number + this.report[9] + amount;
             }
         }
         this.logAdd(log);
@@ -128,8 +160,7 @@ const ATM = {
             this.users[this.current_user].debet = this.users[this.current_user].debet + amount;
             this.cash = this.cash + amount;
             
-            log = `${this.users[this.current_user].number} put ${amount} dolars`;
-            this.logAdd(log);
+            this.logAdd(this.users[this.current_user].number + this.report[10] + amount);
         }
     },
     
@@ -138,8 +169,7 @@ const ATM = {
         if(this.checkAutorized() && this.checkAdmin() && this.checkPosInt(addition)){
             this.cash = this.cash + addition;
             
-            log = `${this.users[this.current_user].number} put ${addition} dolars in ATM account`;
-            this.logAdd(log);
+            this.logAdd(this.users[this.current_user].number + this.report[11] + addition);
         }
     },
     
@@ -153,10 +183,8 @@ const ATM = {
     // log out
     logout: function() {
         if(this.checkAutorized()){
-            
-            log = `${this.users[this.current_user].number} logout`;
-            
-            this.logAdd(log);
+                        
+            this.logAdd(this.users[this.current_user].number + this.report[12]);
             this.is_auth = false;
             this.current_user = false;
         }
