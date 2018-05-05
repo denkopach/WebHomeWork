@@ -21,7 +21,7 @@ const ATM = {
     // authorization
     auth: function(number, pin) {
         let log = '';
-        let current_user;
+        let current_user = false;
 
         if(this.is_auth) {
             log = `ERROR! reauthorization attempt`;
@@ -29,12 +29,13 @@ const ATM = {
             this.users.find(function(userCurrent, index){
                 if(number === userCurrent.number){
                     current_user = index;
+                    
                 }
             });
-
             this.current_user = current_user;
-
-            if(this.current_user !== false && this.users[this.current_user].pin === pin){
+            if(current_user === false){
+                log = `ERROR! user or password is incorrect`;
+            } else if(this.users[this.current_user].pin === pin){
                 this.is_auth = true;
                 this.current_type = this.users[this.current_user].type;
 
