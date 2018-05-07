@@ -11,85 +11,84 @@ const ATM = {
         {number: "0025", pin: "123", debet: 675, type: "user"}
     ],
     logging: [],
-    loggingAmount: 0,
 
     report: [
       //0
-      `ERROR! reauthorization attempt`,
+      {report:`ERROR! reauthorization attempt`, 
+        ru:`попытка повторной авторизации`},
       //1
-      `ERROR! user or password is incorrect`,
+      {report:`ERROR! user or password is incorrect`, 
+        ru:`Неверный логин/пароль`},
       //2
-      `authorized at an ATM as `,
+      {report:` - authorized at an ATM `, 
+        ru:`Вы успешно авторизированы`},
       //3
-      `ERROR! a wrong number is entered`,
+      {report:`ERROR! a wrong number is entered`, 
+        ru:`Введено неворное значение`},
       //4
-      `ERROR! Authorisation Error`,
+      {report:`ERROR! Authorisation Error`, 
+        ru:`Ошибка авторизации`},
       //5
-      `ERROR! attempt to access the admin functions`,
+      {report:`ERROR! attempt to access the admin functions`, 
+        ru:`Ета функция доступна только админу`},
       //6
-      `ERROR! attempt to access the user functions`,
+      {report:`ERROR! attempt to access the user functions`, 
+        ru:`Ета функция доступна только пользователю`},
       //7
-      `ERROR! attempt to withdraw money exceeding the user's account`,
+      {report:`ERROR! attempt to withdraw money exceeding the user's account`, 
+        ru:`На вашем балансе недостаточно средств`},
       //8
-      `ERROR! attempt to withdraw the amount exceeding the ATM account`,
+      {report:`ERROR! attempt to withdraw the amount exceeding the ATM account`,
+        ru:`В банкомате недостаточно средств`},
       //9  take off money
-      ` take off `,
+      {report:` - take off `,
+        ru:`Вы успешно сняли `},
       //10 put money user
-      ` put `,
+      {report:` - put `,
+      ru:`Вы успешно положили `},
       //11 put money admin
-      ` put in ATM account - `,
+      {report:` - put in ATM account - `,
+        ru:`Вы успешно положили в банкомат `},
       //12 logout
-      ` logout`
+      {report:` - logout`,
+        ru:`Сеанс завершен`}
     ],
 
-    logAdd: function(str){
-        const now = new Date();
-        function addLeadingZeros(val, lenNum = 2){
-            return val.toString().padStart(lenNum, "0");
-        }
-        
-        const dateNow = addLeadingZeros(now.getDay()) + '.' + 
-                        addLeadingZeros(now.getMonth()) + '.' + 
-                        addLeadingZeros(now.getFullYear(), 4) + ' ' + 
-                        addLeadingZeros(now.getHours()) + ':' + 
-                        addLeadingZeros(now.getMinutes()) + ':' + 
-                        addLeadingZeros(now.getSeconds());
-        this.logging.push(dateNow + ' ' + str);
-        console.log(str);
+    logAdd: function(str, user = '', amount = ''){
+        var date = new Date();
+        this.logging.push(date.toLocaleString('en-GB') + ' ' + user + str.report + amount);
+        console.log(str.ru + amount);
     },
 
     // authorization    
     auth: function(number, pin) {
-        let log = '';
-        let current_user = false;
+        let log;
 
         if(this.is_auth) {
             log = this.report[0];
-        }else{
-            this.users.find(function(userCurrent, index){
-                if(number === userCurrent.number){
-                    current_user = index;
-                    
+            return;
+        }
+        this.current_user = this.users.find(function(current_user, index){
+            if(number === current_user.number){
+                if(current_user.pin === pin){
+                    return current_user;
                 }
-            });
-            this.current_user = current_user;
-            if(current_user === false){
-                log = this.report[1];
-            } else if(this.users[this.current_user].pin === pin){
-                this.is_auth = true;
-                this.current_type = this.users[this.current_user].type;
-
-                log = this.report[2] + this.users[this.current_user].number;
-            }else{
-                log = this.report[1];
             }
+        });
+
+        if(this.current_user){
+            this.is_auth = true; 
+            this.current_type = this.current_user.type;
+            log = this.report[2];
+        }else {
+            log = this.report[1];
         }
 
-        this.logAdd(log);      
+        this.logAdd(log, this.current_user.number);      
     },
     checkPosInt: function(number){
 
-        if(!isNaN(parseFloat(number)) && isFinite(number) && number >= 0){
+        if(!isNaN(parseFloat(number)) && Number.isInteger(number) && isFinite(number) && number >= 0){
             return true;
         }
 
@@ -97,32 +96,14 @@ const ATM = {
         
         return false;
     },
-    //check authorization
-    checkAutorized: function(){
 
-        if(this.is_auth){
-            return true;
-        }else{
-            
-            this.logAdd(this.report[4]);
-            
-            return false;
-        }
-    },
-    //admin type checking
-    checkAdmin: function(){
-        if(this.current_type !== 'admin'){
-            this.logAdd(this.report[5]);
-            
-            return false;
-        }
-        
-        return true;
-    },
-    
     //user type checking
-    checkUser: function(){
-        if(this.current_type !== 'user'){
+    checkUser: function(type){
+        if(!this.is_auth){
+            this.logAdd(this.report[4]);
+            return false
+        }
+        if(this.current_type !== type){
             
             this.logAdd(this.report[6]);
             
@@ -133,53 +114,55 @@ const ATM = {
     
     // check current debet
     check: function() {
-        if(this.checkAutorized() && this.checkUser()){
-            console.log(this.users[this.current_user].debet);
+        if(this.checkAutorized() && this.checkUser('user'   )){
+            console.log(this.current_user.debet);
         }
     },
     
     // get cash - available for user only
     getCash: function(amount) {
-        if(this.checkAutorized() && this.checkUser() && this.checkPosInt(amount)){
+        let log;
+
+        if(this.checkUser('user') && this.checkPosInt(amount)){
             
-            if(this.users[this.current_user].debet < amount){
+            if(this.current_user.debet < amount){
                 log = this.report[7];
             
             }else if (this.cash < amount){
                 log = this.report[8];
             
             }else{
-                this.users[this.current_user].debet = this.users[this.current_user].debet - amount;
-                this.cash = this.cash - amount;
+                this.current_user.debet -= amount;
+                this.cash -= amount;
                 
-                log = this.users[this.current_user].number + this.report[9] + amount;
+                log = this.report[9];
             }
+            this.logAdd(log, this.current_user.number, amount);
         }
-        this.logAdd(log);
     },
     
     // load cash - available for user only
     loadCash: function(amount){
-        if(this.checkAutorized() && this.checkUser() && this.checkPosInt(amount)){
-            this.users[this.current_user].debet = this.users[this.current_user].debet + amount;
-            this.cash = this.cash + amount;
+        if(this.checkUser('user') && this.checkPosInt(amount)){
+            this.current_user.debet = this.current_user.debet + amount;
+            this.cash += amount;
             
-            this.logAdd(this.users[this.current_user].number + this.report[10] + amount);
+            this.logAdd(this.report[10], this.current_user.number, amount);
         }
     },
     
     // load cash to ATM - available for admin only - EXTENDED
     load_cash: function(addition) {
-        if(this.checkAutorized() && this.checkAdmin() && this.checkPosInt(addition)){
-            this.cash = this.cash + addition;
+        if(this.checkUser('admin') && this.checkPosInt(addition)){
+            this.cash += addition;
             
-            this.logAdd(this.users[this.current_user].number + this.report[11] + addition);
+            this.logAdd(this.report[11], this.current_user.number, amount);
         }
     },
     
     // get report about cash actions - available for admin only - EXTENDED
     getReport: function() {
-        if(this.checkAutorized() && this.checkAdmin()){
+        if(this.checkUser('admin')){
             this.logging.forEach(function(value){
                 console.log(value);
             });
@@ -188,11 +171,11 @@ const ATM = {
     
     // log out
     logout: function() {
-        if(this.checkAutorized()){
-                        
-            this.logAdd(this.users[this.current_user].number + this.report[12]);
-            this.is_auth = false;
-            this.current_user = false;
+        if(this.is_auth){
+            this.logAdd(this.report[12], this.current_user.number);
+            this.is_auth = this.current_user = this.type = false;
+        } else {
+            console.log('Вы не авторизированы');
         }
     }
 };
