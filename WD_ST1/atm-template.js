@@ -14,31 +14,31 @@ const ATM = {
 
     report: [
       //0
-      {report:`ERROR! reauthorization attempt`, 
+      {report:` ERROR! reauthorization attempt`, 
         ru:`попытка повторной авторизации`},
       //1
-      {report:`ERROR! user or password is incorrect`, 
+      {report:` ERROR! user or password is incorrect`, 
         ru:`Неверный логин/пароль`},
       //2
       {report:` - authorized at an ATM `, 
         ru:`Вы успешно авторизированы`},
       //3
-      {report:`ERROR! a wrong number is entered`, 
+      {report:` ERROR! a wrong number is entered`, 
         ru:`Введено неворное значение`},
       //4
-      {report:`ERROR! Authorisation Error`, 
+      {report:` ERROR! Authorisation Error`, 
         ru:`Ошибка авторизации`},
       //5
-      {report:`ERROR! attempt to access the admin functions`, 
+      {report:` ERROR! attempt to access the admin functions`, 
         ru:`Ета функция доступна только админу`},
       //6
-      {report:`ERROR! attempt to access the user functions`, 
+      {report:` ERROR! attempt to access the user functions`, 
         ru:`Ета функция доступна только пользователю`},
       //7
-      {report:`ERROR! attempt to withdraw money exceeding the user's account`, 
+      {report:` ERROR! attempt to withdraw money exceeding the user's account`, 
         ru:`На вашем балансе недостаточно средств`},
       //8
-      {report:`ERROR! attempt to withdraw the amount exceeding the ATM account`,
+      {report:` ERROR! attempt to withdraw the amount exceeding the ATM account`,
         ru:`В банкомате недостаточно средств`},
       //9  take off money
       {report:` - take off `,
@@ -105,8 +105,11 @@ const ATM = {
         }
         if(this.current_type !== type){
             
-            this.logAdd(this.report[6]);
-            
+            if(type === 'admin'){
+                this.logAdd(this.report[5], this.current_user.number);
+            }else if(type === 'user'){
+                this.logAdd(this.report[6], this.current_user.number);
+            }
             return false;
         }
         return true;
@@ -114,7 +117,7 @@ const ATM = {
     
     // check current debet
     check: function() {
-        if(this.checkAutorized() && this.checkUser('user'   )){
+        if(this.checkUser('user')){
             console.log(this.current_user.debet);
         }
     },
