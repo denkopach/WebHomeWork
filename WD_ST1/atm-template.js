@@ -51,7 +51,10 @@ const ATM = {
         ru:`Вы успешно положили в банкомат `},
       //12 logout
       {report:` - logout`,
-        ru:`Сеанс завершен`}
+        ru:`Сеанс завершен`},
+      //13
+      {report:` - check balance`,
+        ru:`Ваш баланс - `}
     ],
 
     logAdd: function(str, user = '', amount = ''){
@@ -101,7 +104,7 @@ const ATM = {
     checkUser: function(type){
         if(!this.is_auth){
             this.logAdd(this.report[4]);
-            return false
+            return false;
         }
         if(this.current_type !== type){
             
@@ -117,8 +120,11 @@ const ATM = {
     
     // check current debet
     check: function() {
-        if(this.checkUser('user')){
-            console.log(this.current_user.debet);
+        if(this.is_auth){
+            this.logAdd(this.report[13], this.current_user.number, this.current_user.debet);
+        }else{
+            this.logAdd(this.report[4]);
+            return false;
         }
     },
     
