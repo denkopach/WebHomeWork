@@ -54,7 +54,10 @@ const ATM = {
         ru:`Сеанс завершен`},
       //13
       {report:` - check balance`,
-        ru:`Ваш баланс - `}
+        ru:`Ваш баланс - `},
+      //14
+      {report:`attempt to be logged out by an unauthorized user`,
+        ru:`Вы не авторизированы`}
     ],
 
     logAdd: function(str, user = '', amount = ''){
@@ -72,10 +75,8 @@ const ATM = {
             return;
         }
         this.current_user = this.users.find(function(current_user, index){
-            if(number === current_user.number){
-                if(current_user.pin === pin){
-                    return current_user;
-                }
+            if(number === current_user.number && current_user.pin === pin){
+                return current_user;
             }
         });
 
@@ -183,8 +184,11 @@ const ATM = {
         if(this.is_auth){
             this.logAdd(this.report[12], this.current_user.number);
             this.is_auth = this.current_user = this.type = false;
-        } else {
-            console.log('Вы не авторизированы');
+
+            return;
         }
+        
+       this.logAdd(this.report[14]);
+        
     }
 };
