@@ -1,0 +1,17 @@
+body {
+	background: #B0C4DE;
+}
+.task4-line {
+	display: flex;
+}
+.task4-cell {
+	width: 20px;
+	height: 20px;
+	background: red;
+}
+.task4-cell.even {
+	background: blue;
+}
+.triangle {
+	width: 200px;
+}

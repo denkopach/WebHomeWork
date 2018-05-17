@@ -1,0 +1,43 @@
+.block-vote{
+  max-width:  20%;
+  font-size: 1.5Em;
+  color: #808080;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5%;
+  border: outset;
+  z-index: 1000;
+}
+.task{
+  text-align: center;
+}
+.block-vote form{
+  text-align: left;
+  padding: 15px;
+  width: 50%;
+  margin-left: 20%;
+}
+.vote-signature{
+  font-size: 0.7Em;
+  font-style: italic;
+  font-weight: bold;
+  padding-top: 10px;
+  text-align: center;
+}
+.button-vote{
+  right: 5%;
+}
+.vote-radio{
+  margin-left: 25%;
+}
+.button-back{
+  position: absolute;
+  left: 55%;
+  bottom: 65%;
+  border-radius: 10%;
+  border: outset;
+}
+.button-back a{
+  color: #808080;
+  text-decoration: none;
+}
