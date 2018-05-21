@@ -71,7 +71,7 @@ const ATM = {
         let log;
 
         if(this.is_auth) {
-            log = this.report[0];
+            this.logAdd(this.report[0]);
             return;
         }
         this.current_user = this.users.find(function(current_user, index){
@@ -85,7 +85,8 @@ const ATM = {
             this.current_type = this.current_user.type;
             log = this.report[2];
         }else {
-            log = this.report[1];
+            this.logAdd(this.report[1]);
+            return;
         }
 
         this.logAdd(log, this.current_user.number);      
@@ -166,7 +167,7 @@ const ATM = {
         if(this.checkUser('admin') && this.checkPosInt(addition)){
             this.cash += addition;
             
-            this.logAdd(this.report[11], this.current_user.number, amount);
+            this.logAdd(this.report[11], this.current_user.number, addition);
         }
     },
     
