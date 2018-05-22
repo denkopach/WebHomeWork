@@ -1,13 +1,13 @@
 <?	
 	$choise = $_POST['vote'];
 	if(isset($choise)){
+
 		$filename = 'json/data.json';
 		
 		if(file_exists($filename)){
 			$file = file_get_contents($filename, true);
 			$taskList = json_decode($file,true);
 		}
-		
 		$taskList[$choise] += 1;
 
 		file_put_contents($filename,json_encode($taskList));

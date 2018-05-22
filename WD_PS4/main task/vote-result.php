@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
 	<?php 
@@ -13,8 +15,5 @@
 		<div id="piechart" class="pie-chart"></div>
 		<div class="button back" onclick="javascript:document.location.href='index.php'">&nbsp;Back&nbsp;</div>
 	</div>
-
-	<script type="text/javascript" src="js/script.js"></script>
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </body>
 </html>
