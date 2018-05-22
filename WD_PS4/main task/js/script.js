@@ -18,9 +18,3 @@ function chart(array){
 		chart.draw(data, options);
 	}
 }
-
-function updateButtonState(){
-	const submitInput = document.querySelector('input[type="submit"]');
-	const selectedRadioButton = document.querySelector('input[name="vote"]:checked');
-	submitInput.disabled = !(selectedRadioButton);
-}

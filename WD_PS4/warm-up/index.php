@@ -30,8 +30,6 @@
 				case 'submit-task6':
 					$result = getResultTask6();
 					break;
-				default:
-					break;
 			}
 		}
 
@@ -89,11 +87,13 @@
 				x
 				<input type="number" name="task4-column" size="4">
 				<input type="submit" value="submit-task4" name="Enter">
-				<? 
-					if($buttonValue === "submit-task4"){
-						echo $result;
-					}
-				?>
+				<div class="chessboard">
+					<? 
+						if($buttonValue === "submit-task4"){
+							echo $result;
+						}
+					?>
+				</div>
 			</form>
 		</div>
 

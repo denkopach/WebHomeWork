@@ -1,17 +1,23 @@
-body {
+body{
 	background: #B0C4DE;
 }
-.task4-line {
+.task4-line{
 	display: flex;
 }
-.task4-cell {
-	width: 20px;
-	height: 20px;
+.task4-cell{
+	min-width: 20px;
+	min-height: 20px;
 	background: red;
 }
-.task4-cell.even {
+.task4-cell.even{
 	background: blue;
 }
-.triangle {
+.triangle{
 	width: 200px;
+}
+.chessboard{
+	overflow: auto;	
+}
+.error{
+	color: red;
 }

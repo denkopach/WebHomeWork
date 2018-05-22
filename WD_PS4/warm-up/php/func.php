@@ -1,7 +1,10 @@
 <?php
+	if (stristr($_SERVER["PHP_SELF"], "func.php")) {
+	    header("Location:../index.php");
+	}
 
 	function addEllP($res){
-		return '<p>' . $res . '</p';
+		return '<p>' . $res . '</p>';
 	}
 
 	function getResultTask1(){
@@ -18,7 +21,7 @@
 
 		for ($i = -1000; $i <= 1000; $i++){
 			
-			$tmp = i % 10;
+			$tmp = $i % 10;
 			
 			if($tmp === 2 || $tmp === 3 || $tmp === 7){
 				$count += $i;
@@ -29,7 +32,6 @@
 	}
 
 	function getResultTask3(){
-		$line = '';
 		$res = '';
 
 		for($i = 0; $i < 50; $i++){
@@ -50,6 +52,10 @@
 		$lines = $_POST['task4-lines'];
 		$column = $_POST['task4-column'];
 
+		if (!checkDigits($lines) || !checkDigits($column)){
+			return alarmError();
+		}
+
 		for($i = 0; $i < $column; $i++){
 			
 			$line = '<div class="task4-line">';
@@ -67,7 +73,7 @@
 			
 			$res .= $line;
 		}
-		return addEllP($res);
+		return $res;
 	}
 
 	function getResultTask5(){
@@ -87,4 +93,10 @@
 			);
 	}
 
-?>
+	function checkDigits($num){
+		return ctype_digit($num) && $num > 0;
+	}
+
+	function alarmError(){
+		return '<p class="error">please enter positive integer number!</p>';
+	}

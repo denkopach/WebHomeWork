@@ -8,13 +8,16 @@
 </head>
 <body>
 	<div class="block-vote">
-		<?php 
-			include 'php/vote.php';
-		?>
+		<div class="task">
+			Select your favorite <br>programming language:
+			<form method="post" action="vote-result.php">
+				<div class="vote-radio">
+					<?php include 'php/vote.php'; ?>
+				</div>
+				<div class="vote-signature">*make your choice</div>
+				<div class="button submit" name="vote-enter" onclick="javascript:this.parentNode.submit();">&nbsp;Submit&nbsp;</div>
+			</form>
+		</div>
 	</div>
-<script type="text/javascript" src="js/script.js"></script>
-<script type="text/javascript">
-	updateButtonState();
-</script>
 </body>
 </html>

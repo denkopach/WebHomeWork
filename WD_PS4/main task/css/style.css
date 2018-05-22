@@ -1,5 +1,5 @@
 .block-vote{
-  max-width:  20%;
+  max-width:  295px;
   font-size: 1.5Em;
   color: #808080;
   margin-left: auto;
@@ -7,6 +7,7 @@
   border-radius: 5%;
   border: outset;
   z-index: 1000;
+  height: 330px;
 }
 .task{
   text-align: center;
@@ -24,20 +25,28 @@
   padding-top: 10px;
   text-align: center;
 }
-.button-vote{
-  right: 5%;
-}
 .vote-radio{
   margin-left: 25%;
 }
-.button-back{
-  position: absolute;
-  left: 55%;
-  bottom: 65%;
+.button{
   border-radius: 10%;
   border: outset;
+  cursor: pointer;
+  display: inline-block;
+}
+.button.back{
+  margin-left: 35%;
+}
+.button.submit{
+  margin-left: 20%;
+  margin-top: 20px;
 }
 .button-back a{
   color: #808080;
   text-decoration: none;
+}
+.pie-chart{
+  width: 285px;
+  height: 285px;
+  margin-left: 5px;
 }

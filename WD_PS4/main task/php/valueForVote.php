@@ -1,4 +1,5 @@
 <?php 
+	
 	$valueForVote = array(
 							'contactChoice1' => 'C',
 							'contactChoice2' => 'C++',
