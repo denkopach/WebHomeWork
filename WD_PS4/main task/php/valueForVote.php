@@ -1,5 +1,5 @@
 <?php 
-	
+
 	$valueForVote = array(
 							'contactChoice1' => 'C',
 							'contactChoice2' => 'C++',
@@ -8,5 +8,3 @@
 							'contactChoice5' => 'Js',
 							'contactChoice6' => 'other'
 	);
-
-?>
