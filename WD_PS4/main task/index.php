@@ -21,7 +21,7 @@
 					?>
 				</div>
 				<div class="vote-signature">*make your choice</div>
-				<div class="button submit" name="vote-enter" onclick="javascript:this.parentNode.submit();">&nbsp;Submit&nbsp;</div>
+				<div class="button submit" onclick="this.parentNode.submit();">&nbsp;Submit&nbsp;</div>
 			</form>
 		</div>
 	</div>
