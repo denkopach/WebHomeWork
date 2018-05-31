@@ -1,39 +1,15 @@
+<?php
+session_start(); 
+if(isset($_POST['Enter'])){
+    include_once 'php/func.php';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link rel="stylesheet" href="css/style.css">
-	<?php
-		$result = '';
-
-		if(isset($_POST['Enter'])){
-			include_once 'php/func.php';
-			$buttonValue = $_POST['Enter'];
-		 
-			switch ($buttonValue) {
-				case 'submit-task1':
-					$result = getResultTask1();
-					break;
-				case 'submit-task2':
-					$result = getResultTask2();
-					break;
-				case 'submit-task3':
-					$result = getResultTask3();
-					break;
-				case 'submit-task4':
-					$result = getResultTask4();
-					break;
-				case 'submit-task5':
-					$result = getResultTask5();
-					break;
-				case 'submit-task6':
-					$result = getResultTask6();
-					break;
-			}
-		}
-
-	?>
 </head>
 <body>
 	<div class="conteiner">
@@ -41,11 +17,13 @@
 			<h2>Task1</h2>
 			<p>Let's calculate the sum of numbers between -1000 to 1000</p>
 			<form method="post">
-				<input type="submit" value="submit-task1" name="Enter">
-				<? 
-					if($buttonValue === "submit-task1"){
-						echo $result;
-					}
+				<input type="hidden" value="task1" name="submit">
+				<input type="submit" value="Enter" name="Enter">
+				<?php
+				if ($_SESSION['task'] === 'task1') {
+					echo $_SESSION['result'];
+					session_destroy();
+				}
 				?>
 			</form>
 		</div>
@@ -54,11 +32,13 @@
 			<h2>Task2</h2>
 			<p>Let's calculate the sum of numbers between -1000 to 1000 which end in 2, 3, 7</p>
 			<form method="post">
-				<input type="submit" value="submit-task2" name="Enter">
-				<? 
-					if($buttonValue === "submit-task2"){
-						echo $result;
-					}
+				<input type="hidden" value="task2" name="submit">
+				<input type="submit" value="Enter" name="Enter">
+				<?php 
+				if ($_SESSION['task'] === 'task2') {
+					echo $_SESSION['result'];
+					session_destroy();
+				}
 				?>
 			</form>
 		</div>
@@ -67,12 +47,14 @@
 			<h2>Task3</h2>
 			<p>Let's construct a triangle of asterisks of 50 lines</p>
 			<form method="post">
-				<input type="submit" value="submit-task3" name="Enter">
+				<input type="hidden" value="task3" name="submit">
+				<input type="submit" value="Enter" name="Enter">
 				<div class="triangle">
-					<? 
-						if($buttonValue === "submit-task3"){
-							echo $result;
-						}
+					<?php 
+					if ($_SESSION['task'] === 'task3') {
+						echo $_SESSION['result'];
+						session_destroy();
+					}
 					?>
 				</div>
 			</form>
@@ -86,12 +68,14 @@
 				<input type="number" name="task4-lines" size="4">
 				x
 				<input type="number" name="task4-column" size="4">
-				<input type="submit" value="submit-task4" name="Enter">
+				<input type="hidden" value="task4" name="submit">
+				<input type="submit" value="Enter" name="Enter">
 				<div class="chessboard">
-					<? 
-						if($buttonValue === "submit-task4"){
-							echo $result;
-						}
+					<?php 
+					if ($_SESSION['task'] === 'task4') {
+						echo $_SESSION['result'];
+						session_destroy();
+					}
 					?>
 				</div>
 			</form>
@@ -102,12 +86,14 @@
 			<p>Let's find the sum of the digits of the entered number</p>
 			<form method="post">
 				<input type="number" name="task5-input">
-				<input type="submit" value="submit-task5" name="Enter">
-				<? 
-					if($buttonValue === "submit-task5"){
-						echo $result;
-					}
-				?>	
+				<input type="hidden" value="task5" name="submit">
+				<input type="submit" value="Enter" name="Enter">
+				<?php 
+				if ($_SESSION['task'] === 'task5') {
+					echo $_SESSION['result'];
+					session_destroy();
+				}
+				?>
 			</form>
 		</div>
 
@@ -115,13 +101,15 @@
 			<h2>Task6</h2>
 			<p>Generate an array of random integers from 1 to 10, the length of the array is 100. Remove the repetitions from the array, sort and revert</p>
 			<form method="post">
-				<input type="submit" value="submit-task6" name="Enter">
+				<input type="hidden" value="task6" name="submit">
+				<input type="submit" value="Enter" name="Enter">
 				<p>
-					<? 
-					if($buttonValue === "submit-task6"){
-						print_r($result);
-					}
-				?>
+					<?php 
+					if ($_SESSION['task'] === 'task6') {
+						print_r($_SESSION['result']);
+						session_destroy();
+					} 
+					?>
 				</p>
 			</form>
 		</div>
