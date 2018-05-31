@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link rel="stylesheet" href="css/style.css">
-	
+	<?php include 'php/res.php' ?>
 </head>
 <body>
 	<div class="block-vote">

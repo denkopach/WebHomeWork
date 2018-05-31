@@ -1,9 +1,8 @@
 <?php
-
-$filename = '../json/data.json';
-$choise = $_POST['choise'];
+$choise = $_POST['vote'];
 
 if (isset($choise)) {
+	$filename = 'json/data.json';
     if (file_exists($filename)) {
         $file = file_get_contents($filename, true);
         $taskList = json_decode($file,true);
@@ -12,9 +11,11 @@ if (isset($choise)) {
     $taskList[$choise] += 1;
     file_put_contents($filename,json_encode($taskList));
 }
-include 'valueForVote.php';
 
 if (isset( $_POST['getVoteRes'])) {
+	include 'valueForVote.php';
+	$filename = '../json/data.json';
+	
     if (file_exists($filename)) {
         $file = file_get_contents($filename);
         $arr = json_decode($file, true);
