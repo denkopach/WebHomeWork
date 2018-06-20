@@ -1,0 +1,414 @@
+body {
+	margin: 0;
+}
+@font-face {
+	font-family: KaushanScript-Regular;
+	src: url("../fonts/KaushanScript-Regular.otf");
+}
+@font-face {
+	font-family: 'Proxima Nova Thin';
+	src: url('../fonts/ProximaNovaT-Thin.eot');
+	src: url('../fonts/ProximaNovaT-Thin.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/ProximaNovaT-Thin.woff') format('woff'),
+	url('../fonts/ProximaNovaT-Thin.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Proxima Nova Light';
+	src: url('../fonts/ProximaNova-Light.eot');
+	src: url('../fonts/ProximaNova-Light.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/ProximaNova-Light.woff') format('woff'),
+	url('../fonts/ProximaNova-Light.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: Blackjar;
+	src: url(../fonts/blackjar.ttf);
+}
+@font-face {
+	font-family: Montserrat-Regular;
+	src: url(../fonts/Montserrat-Regular.ttf);
+}
+@font-face {
+	font-family: Proxima Nova;
+	src: url(../fonts/Proxima Nova Light.otf);
+}
+.container {
+	font-family: "Montserrat-Regular";
+	width: 960px;
+	margin: auto;
+}
+.row {
+	padding-right: 10px;
+	padding-left: 10px;
+}
+header {
+	background-image: url(../images/blue-pattern.jpg);
+}
+nav {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+.logo {
+	color: #00ABE9;
+	width: 100px;
+	height: 100px;
+	background-color: white;
+	text-align: center;
+	vertical-align: middle;
+	font-family: KaushanScript-Regular, serif;
+	box-shadow: 15px 15px 0px 0px #00ABE9;
+	font-size: 3.2em;
+    border-bottom-width: 4px; /* Толщина линии внизу */
+    border-bottom-style: solid; /* Стиль линии внизу */
+    border-bottom-color: #00ABE9; 
+}
+.menu {
+	color: white;
+	width: 27px;
+	font-size: 13px;
+}
+.greeting {
+	text-align: right;
+	color: white;
+	margin-top: 50px;
+}
+.greeting h1 {
+	font-family: "Blackjar";
+	font-size: 70px;
+	font-weight: 100;
+	line-height: 145%;
+}
+.greeting h4 {
+	font-size: 35px;
+	font-family: 'Proxima Nova Light';
+	letter-spacing: 0.12px;
+	font-weight: 100;
+	margin-top: -26px;
+}
+.greeting h4 span{
+	font-style: italic;
+	font-weight: bold;
+}
+.action {
+    width: 100%;
+    background-image: url(../images/iphone.png);
+    background-position: left 70px top 17px;
+    background-repeat: no-repeat;
+    padding-bottom: 231px;
+}
+.btn {
+	line-height: 53px;
+	height: 53px;
+	width: 171px;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 14px;
+}
+.btn-download {
+	margin-left: auto;
+	color: white;
+	outline: 2px solid white;
+}
+.slide1	{
+	margin-top: 113px;
+}
+.btn-sayhello {
+	color: #14af8f;
+	outline: 2px solid #14af8f;
+	margin-left: 2px;
+    margin-top: 73px;
+    width: 171px;
+}
+.btn-dribbble {
+	color: #ea4c89;
+	outline: 2px solid #ea4c89;
+	margin-left: 2px;
+    margin-top: 57px;
+    width: 221px;
+}
+.slide1	{
+	display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+	max-width: 560px;
+	padding-bottom: 142px;
+}
+.descript h2 {
+	letter-spacing: -0.5px;
+    font-weight: 200;
+	font-size: 34px;
+}
+.descript p, blockquote{
+	line-height: 1.5;
+	letter-spacing: -0.3px;
+	margin-top: 30px;
+}
+.descript blockquote {
+	font-style: italic;
+	margin-top: 26px;
+	border-left: 6px solid #4eacdd;
+    margin-left: 0px;
+    padding-left: 18px;
+    margin-right: 0;
+}
+.slide2 {
+	display: inline-flex;
+    justify-content: space-between;
+    width: 99%;
+}
+.img-device {
+	width: 837px;
+    height: 377px;
+	display: flex;
+    margin-left: -239px;
+    margin-top: 272px;
+    overflow: hidden;
+    background-image: url(../images/devices.png); 
+}
+.font-first {
+	height: 650px;
+	background-color: #f4f4f4;
+	background-image: url(../images/ipad.png);
+	background-position: right 61px top 151px; /* Положение фона */
+    background-repeat: no-repeat; /* Отменяем поxвторение фона */
+}
+.font-second {
+	height: 655px;
+	background-color: white;
+	background-image: url(../images/devices.png);
+	background-position: left 50px bottom -57px;
+    background-repeat: no-repeat;
+}
+.col-left {
+	margin-left: auto;
+	padding-top: 72px;
+}
+.slide2 .col-left p:first-of-type {
+    margin-top: 33px;
+}
+.btn-beer {
+	color: white;
+	outline: 2px solid white;
+    width: 220px;
+    margin: auto;
+}
+.font-third {
+	margin-top: -24px;
+	background-color: #13c3ad;
+}
+.question {
+	color: white;
+	text-align: center;
+	padding-top: 63px;
+    margin-top: 20px;
+    padding-bottom: 100px;
+}
+.question h2 {
+	font-size: 36px;
+	padding-bottom: 7px;	
+}
+.font-fourth {
+	background-color: #f4f4f4;
+	height: 650px;
+	display: flex;
+}
+.icons {
+	display: inline-flex;
+	font-size: 22px;
+	justify-content: center;
+}
+.icon-circle {
+	margin: 18px;
+	text-align: center;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 100%;
+	background-color: #f6f6f7;
+	border: 3px solid #545454;
+}
+.social {
+	text-align: center;
+	display: inline-grid;
+	height: 200px;
+}
+.subscription {
+	align-items: center;
+	font-weight:bold;
+	font-style:italic;
+	display: inline-flex;
+}
+.subscription span {
+	padding-right: 13px;
+}
+.mail {
+	margin-left: auto;
+    width: 220px; /* Ширина поля с кнопкой */
+    min-height: 20px; /* Минимальная высота */
+    display: inline-flex;
+    background: white;
+    border-radius: 10px;
+   }
+   input[name="mail"] {
+    border: none; /* Убираем рамку */
+    outline: none; /* Убираем свечение в Chrome и Safari */
+    -webkit-appearance: none; /* Убираем рамку в Chrome и Safari */
+    vertical-align: middle; /* Выравнивание по середине */
+	font-weight: bold;
+	font-style: italic;
+	padding-left: 20px;
+	border-radius: 10px;
+   }
+   input[name="mail"] ::-moz-placeholder { color: #d3d3d3; }
+   input[name="mail"] ::-webkit-input-placeholder { color: #d3d3d3; }
+.icon-mail {
+	line-height: 42px;
+}
+.center {
+	text-align: center;
+}
+footer {
+    align-items: center;
+    height: 100px;
+    display: flex;
+}
+.copyright {
+	margin-top: 20px;
+	font-size: 11px;
+	text-align: center;
+}
+.copyright span {
+	color: #6dc5ea;
+}
+.btn-up {
+	position: fixed;
+	color: darkgrey;
+	background: lightgrey;
+	border: none;
+	width: 40px;
+	height: 40px;
+	bottom:30px;
+	right:60px;
+	border-radius: 5px;
+	font-size: 150%;
+}
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+	.container {
+		width: 100%;
+	}
+}
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 1050px) {
+	.font-first {
+		background-position: right 0px bottom -57px;
+	}
+}
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+	.slide1 {
+		width: 56%;
+	}
+	.btn-sayhello {
+		margin-left: auto;
+    	margin-right: auto;
+	}
+	.font-first {
+		background-position: right -70px bottom -57px;
+	}
+}
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+	.container {
+		width: 100%;
+	}
+	.btn-download {
+		margin-right: auto;
+	}
+	.action {
+		height: 244px;
+		background-position: center top 0px;
+		padding-bottom: 0;
+		align-items: center;
+   		display: flex;
+	}
+	.font-first {
+		background-position: right -249px top 95px;
+	}
+
+	.slide1 {
+		width: 70%;
+		padding-bottom: 0;
+		margin-top: 0;
+	}
+	.col-right {
+	    padding-top: 53px;
+	}
+	.row {
+
+	}
+	.btn-sayhello {
+
+	}
+	.descript p, blockquote {
+		margin-top: 10px;
+	}
+	.descript h2 {
+    	margin-bottom: 10px;
+    	text-align: center;
+	}
+	.col-left {
+	    margin-right: auto;
+	    margin-left: auto;
+	    padding-top: 0;
+	}
+	.btn-dribbble {
+		margin-right: auto;
+	    margin-left: auto;
+	    margin-top: 0;
+	}
+	.font-second {
+		background-image: none;
+		height: 350px;
+		background-position: left -290px bottom -57px;
+	}
+	.font-fourth {
+		height: 350px;
+	}
+	.mail {
+		margin-right: auto;
+	}
+	.subscription span {
+    	padding-right: 0;
+	}
+	.subscription {
+		display: grid;
+	}
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+	.icon-circle {
+	    margin: 0px;
+	}
+	.subscription {
+		display: block;
+	}
+	.subscription span {
+		display: block;
+	}
+	.font-first {
+		background-position: left 310px top 90px;
+	}
+	.slide1 {
+		width: 78%;
+	}
+}
+
