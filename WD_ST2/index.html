@@ -74,7 +74,7 @@
 					<div class="question">
 						<h2>Like What You See?</h2>
 						<div class="btn btn-beer">
-							buy me a beer? <i class="fas fa-beer"></i>
+							buy me a <b>beer</b>? <i class="fas fa-beer"></i>
 						</div>
 					</div>
 				</div>
@@ -101,12 +101,13 @@
 						</div>
 						<div class="subscription">
 							<span>Newsletter Subscription</span>
-							<div class="mail">
+							<form class="mail">
 								<input type="email" name="mail" placeholder="Enter Email">
-								<div class="icon-mail">
+								<hr class="btn-mail-hr" noshade>
+								<div class="icon-mail btn-cursor" onClick="javascript:this.form.submit();">
 									<i class="fas fa-envelope"></i>
 								</div>
-							</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -118,13 +119,13 @@
 		<div class="container">
 			<div class="row">
 				<div class="copyright">
-					<p>© 2013 <span>Perth</span>. Breending pixels since the naughties</p>
+					<p><b>© 2013 <span>Perth</span>.<i> Breending pixels since the naughties</i></b></p>
 				</div>
 			</div>
 		</div>
 	</footer>
 
-<button id="up" class="btn-up"><i class="fas fa-angle-up"></i></button>
+<button id="up" class="btn-up btn-cursor"><i class="fas fa-angle-up"></i></button>
 
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 </body>
