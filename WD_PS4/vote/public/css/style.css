@@ -1,3 +1,6 @@
+.err-msg {
+  padding: 20px;
+}
 .block-vote{
   max-width:  295px;
   font-size: 1.5Em;

@@ -3,126 +3,130 @@
 if (stristr($_SERVER["PHP_SELF"], "func.php")) {
     header("Location:../index.php");
 }
+session_start(); 
 $_SESSION['task'] = $_POST['submit'];
+$result;
 switch ($_SESSION['task']) {
-	case 'task1':
-		getResultTask1();
-		break;
-	case 'task2':
-		getResultTask2();
-		break;
-	case 'task3':
-		getResultTask3();
-		break;
-	case 'task4':
-		getResultTask4();
-		break;
-	case 'task5':
-		getResultTask5();
-		break;
-	case 'task6':
-		getResultTask6();
-		break;
+    case 'task1':
+    $result = getSumEl();
+    break;
+case 'task2':
+    $result = getSumElWithOut237();
+    break;
+case 'task3':
+    $result = drawFurTree();
+    break;
+case 'task4':
+    $result = drawChessboard();
+    break;
+case 'task5':
+    $result = sumDigitsNumber();
+    break;
+case 'task6':
+    $result = arrayOperations();
+    break;
 }
-function addEllP($res){
-	return '<p>' . $res . '</p>';
-}
+$_SESSION['result'] = $result;
 
-function getResultTask1(){
-	$count = 0;
+header("Location:../index.php");
 
-	for ($i = -1000; $i <= 1000; $i++){
-		$count += $i;
-	}
-	
-	$_SESSION['result'] = addEllP($count);
+function addEllP($res) {
+    return '<p>' . $res . '</p>';
 }
 
-function getResultTask2(){
-	$count = 0;
-
-	for ($i = -1000; $i <= 1000; $i++){
-		
-		$tmp = abs($i) % 10;
-		
-		if($tmp === 2 || $tmp === 3 || $tmp === 7){
-			$count += $i;
-		}
-	}
-
-	$_SESSION['result'] = addEllP($count);
+function getSumEl() {
+    $count = 0;
+    for ($i = -1000; $i <= 1000; $i++){
+        $count += $i;
+    }
+    return addEllP($count);
 }
 
-function getResultTask3(){
-	$res = '';
-	$line = '';
+function getSumElWithOut237() {
+    $count = 0;
 
-	for($i = 0; $i < 50; $i++){
-		
-		for($j = 0; $j < $i; $j++){
-			$line .= '*';
-		}
-		
-		$res = $res . $line . '<br>';
-		$line = '';
-	}
-	$_SESSION['result'] = addEllP($res);
+    for ($i = -1000; $i <= 1000; $i++) {
+        
+        $tmp = abs($i) % 10;
+        
+        if ($tmp === 2 || $tmp === 3 || $tmp === 7) {
+            $count += $i;
+        }
+    }
+
+    return addEllP($count);
+}
+    
+function drawFurTree() {
+    $res = '';
+    $line = '';
+
+    for ($i = 1; $i <= 50; $i++) {
+        
+        for ($j = 1; $j <= $i; $j++) {
+            $line .= '*';
+        }
+        
+        $res = $res . $line . '<br>';
+        $line = '';
+    }
+    return addEllP($res);
 }
 
-function getResultTask4(){
-	$res = '';
-	$lines = $_POST['task4-lines'];
-	$column = $_POST['task4-column'];
+function drawChessboard() {
+    $res = '';
+    $lines = $_POST['task4-lines'];
+    $column = $_POST['task4-column'];
 
-	if (!checkDigits($lines) || !checkDigits($column)){
-		$_SESSION['result'] = alarmError();
-	}
+    if (!checkDigits($lines) || !checkDigits($column)) {
+        $_SESSION['result'] = alarmError();
+    }
 
-	for($i = 0; $i < $column; $i++){
-		
-		$line = '<div class="task4-line">';
-		
-		for($j = 0; $j < $lines; $j++){
-			
-			if(($j + $i) % 2 === 0){
-				$line .= '<div class="task4-cell"></div>';
-			} else {
-				$line .= '<div class="task4-cell even"></div>';
-			}
-		}
-		
-		$line .= '</div>';
-		
-		$res .= $line;
-	}
-	$_SESSION['result'] = $res;
+    for ($i = 0; $i < $column; $i++) {
+        
+        $line = '<div class="task4-line">';
+        
+        for ($j = 0; $j < $lines; $j++) {
+            
+            if (($j + $i) % 2 === 0) {
+                $line .= '<div class="task4-cell"></div>';
+            } else {
+                $line .= '<div class="task4-cell even"></div>';
+            }
+        }
+        
+        $line .= '</div>';
+        
+        $res .= $line;
+    }
+    return $res;
 }
 
-function getResultTask5(){
-	$input = $_POST['task5-input'];
-	if (!checkDigits($input)){
-		$_SESSION['result'] = alarmError();
-	}
-	$_SESSION['result'] = addEllP(array_sum(str_split((string) abs($input))));
+function sumDigitsNumber() {
+    $input = $_POST['task5-input'];
+    if (!checkDigits($input)) {
+        $_SESSION['result'] = alarmError();
+    }
+    return addEllP(array_sum(str_split((string) abs($input))));
 }
 
-function getResultTask6(){
-	$arr = array_map(function(){
-					return rand( 1, 10);
-					}, array_pad( [], 100, 0)
-			);
+function arrayOperations() {
+    $arr = array_map(function() {
+            return rand( 1, 10);
+        }, array_pad( [], 100, 0)
+    );
 
-	sort($arr);
+    sort($arr);
 
-	$_SESSION['result'] = array_unique(
-			array_reverse($arr)
-		);
+    return array_unique(
+            array_reverse($arr)
+        );
 }
 
-function checkDigits($num){
-	return ctype_digit($num) && $num > 0;
+function checkDigits($num) {
+    return ctype_digit($num) && $num > 0;
 }
 
-function alarmError(){
-	return '<p class="error">please enter positive integer number!</p>';
+function alarmError() {ы
+    return '<p class="error">please enter positive integer number!</p>';
 }
