@@ -110,6 +110,9 @@ nav {
 	text-align: center;
 	font-size: 14px;
 	cursor: pointer;
+	border: none;
+	background: transparent;
+	display: block;
 }
 .btn-download {
 	margin-left: auto;
@@ -236,6 +239,7 @@ nav {
 	-webkit-border-radius: 50px;
 	border-radius: 100%;
 	background-color: #f6f6f7;
+	color: #545454;
 	border: 3px solid #545454;
 }
 .social {
@@ -259,21 +263,26 @@ nav {
     display: inline-flex;
     background: white;
     border-radius: 10px;
+    height: 53px;
    }
-   input[name="mail"] {
-    border: none; /* Убираем рамку */
-    outline: none; /* Убираем свечение в Chrome и Safari */
-    -webkit-appearance: none; /* Убираем рамку в Chrome и Safari */
-    vertical-align: middle; /* Выравнивание по середине */
-	font-weight: bold;
-	font-style: italic;
-	padding-left: 20px;
-	border-radius: 10px;
-   }
-   input[name="mail"] ::-moz-placeholder { color: #d3d3d3; }
-   input[name="mail"] ::-webkit-input-placeholder { color: #d3d3d3; }
+input[name="mail"] {
+border: none; /* Убираем рамку */
+outline: none; /* Убираем свечение в Chrome и Safari */
+-webkit-appearance: none; /* Убираем рамку в Chrome и Safari */
+vertical-align: middle; /* Выравнивание по середине */
+font-weight: bold;
+font-style: italic;
+padding-left: 20px;
+border-radius: 10px;
+}
+input[name="mail"] ::-moz-placeholder { color: #d3d3d3; }
+input[name="mail"] ::-webkit-input-placeholder { color: #d3d3d3; }
 .icon-mail {
-	line-height: 42px;
+	margin-top: auto;
+	margin-bottom: auto;
+	border-left: 2px solid #f4f4f4;
+	height: auto;
+	line-height: 0;
 }
 .center {
 	text-align: center;
@@ -314,15 +323,33 @@ footer {
 }
 
 /* Large Devices, Wide Screens */
+@media only screen and (max-width : 1300px) {
+	.font-second {
+		background-position: left 0px bottom -57px;
+	}
+}
 @media only screen and (max-width : 1200px) {
 	.container {
 		width: 100%;
+	}
+	.font-second {
+		background-position: left 0px bottom -57px;
 	}
 }
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 1050px) {
 	.font-first {
 		background-position: right 0px bottom -57px;
+	}
+	.font-second {
+		background-position: center bottom -87px;
+	}
+	.col-left {
+		margin-right: auto;
+	}
+	.btn-dribbble {
+		margin-left: auto;
+		margin-right: auto;
 	}
 }
 /* Medium Devices, Desktops */
