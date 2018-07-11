@@ -79,9 +79,11 @@ function drawChessboard() {
     $column = $_POST['task4-column'];
 
     if (!checkDigits($lines) || !checkDigits($column)) {
-        $_SESSION['result'] = alarmError();
+        return alarmErrorNum();
     }
-
+    if ($lines > 100 || $column > 100) {
+        return '<p class="error">please enter number to 100!</p>';
+    }
     for ($i = 0; $i < $column; $i++) {
         
         $line = '<div class="task4-line">';
@@ -105,7 +107,7 @@ function drawChessboard() {
 function sumDigitsNumber() {
     $input = $_POST['task5-input'];
     if (!checkDigits($input)) {
-        $_SESSION['result'] = alarmError();
+        return alarmErrorNum();
     }
     return addEllP(array_sum(str_split((string) abs($input))));
 }
@@ -127,6 +129,6 @@ function checkDigits($num) {
     return ctype_digit($num) && $num > 0;
 }
 
-function alarmError() {ы
+function alarmErrorNum() {
     return '<p class="error">please enter positive integer number!</p>';
 }
