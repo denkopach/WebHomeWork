@@ -6,15 +6,6 @@ body {
 	src: url("../fonts/KaushanScript-Regular.otf");
 }
 @font-face {
-	font-family: 'Proxima Nova Thin';
-	src: url('../fonts/ProximaNovaT-Thin.eot');
-	src: url('../fonts/ProximaNovaT-Thin.eot?#iefix') format('embedded-opentype'),
-	url('../fonts/ProximaNovaT-Thin.woff') format('woff'),
-	url('../fonts/ProximaNovaT-Thin.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-@font-face {
 	font-family: 'Proxima Nova Light';
 	src: url('../fonts/ProximaNova-Light.eot');
 	src: url('../fonts/ProximaNova-Light.eot?#iefix') format('embedded-opentype'),
@@ -30,10 +21,6 @@ body {
 @font-face {
 	font-family: Montserrat-Regular;
 	src: url(../fonts/Montserrat-Regular.ttf);
-}
-@font-face {
-	font-family: Proxima Nova;
-	src: url(../fonts/Proxima Nova Light.otf);
 }
 .container {
 	font-family: "Montserrat-Regular";
@@ -103,8 +90,7 @@ nav {
     padding-bottom: 231px;
 }
 .btn {
-	line-height: 53px;
-	height: 53px;
+	height: 55px;
 	width: 171px;
 	text-transform: uppercase;
 	text-align: center;
@@ -117,21 +103,21 @@ nav {
 .btn-download {
 	margin-left: auto;
 	color: white;
-	outline: 2px solid white;
+	border: 2px solid white;
 }
 .slide1	{
 	margin-top: 113px;
 }
 .btn-sayhello {
 	color: #14af8f;
-	outline: 2px solid #14af8f;
+	border: 2px solid #14af8f;
 	margin-left: 2px;
     margin-top: 73px;
     width: 171px;
 }
 .btn-dribbble {
 	color: #ea4c89;
-	outline: 2px solid #ea4c89;
+	border: 2px solid #ea4c89;
 	margin-left: 2px;
     margin-top: 57px;
     width: 221px;
@@ -200,7 +186,7 @@ nav {
 }
 .btn-beer {
 	color: white;
-	outline: 2px solid white;
+	border: 2px solid white;
     width: 220px;
     margin: auto;
 }
