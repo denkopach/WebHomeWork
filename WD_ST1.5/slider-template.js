@@ -27,13 +27,11 @@ sliderPrewLi.hover(
 	}
 );
 
-sliderPrewLi.click(function(){
+sliderPrewLi.click(function(event){
 	sliderPrewLi.each(function (index, value) {
 		$(value).removeClass('current');
 	});
-	if ($(event.target).is('.slider-img')){
-		$(this).addClass('current');
-	};
+	$(this).addClass('current');
 	
 	const currentImg = $(event.target).attr('src').replace(SMALL_SIZE, BIG_SIZE);
 	$('.slider-current img').attr('src', currentImg);
@@ -60,9 +58,9 @@ function changeCurrentImg(current, next) {
 	} else if (nextCurrent < 0) {
 		nextCurrent = itemCount - 1;
 	}
-	$(`li:eq(${current})`).removeClass('current');
-	$(`li:eq(${nextCurrent})`).addClass('current');
+	$(`.slider-previews li:eq(${current})`).removeClass('current');
+	$(`.slider-previews li:eq(${nextCurrent})`).addClass('current');
 
-	const currentImg = $(`li:eq(${nextCurrent}) img`).attr('src').replace(SMALL_SIZE, BIG_SIZE);
+	const currentImg = $(`.slider-previews li:eq(${nextCurrent}) img`).attr('src').replace(SMALL_SIZE, BIG_SIZE);
 	$('.slider-current img').attr('src', currentImg);
 }
