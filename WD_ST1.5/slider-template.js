@@ -12,7 +12,7 @@ const IMAGES = [
 ];
 
 $.each(IMAGES, function (index, value) {
-	const imgEl = `<li><img src="${API_URL}${BIG_SIZE}/${value}" alt="0" class="slider-img"></li>`;
+	const imgEl = `<li><img src="${API_URL}${SMALL_SIZE}/${value}" alt="0"></li>`;
 	$('.slider-previews').append(imgEl);
 });
 
@@ -35,7 +35,7 @@ sliderPrewLi.click(function(){
 		$(this).addClass('current');
 	};
 	
-	const currentImg = $(event.target).attr('src');
+	const currentImg = $(event.target).attr('src').replace(SMALL_SIZE, BIG_SIZE);
 	$('.slider-current img').attr('src', currentImg);
 });
 
@@ -63,6 +63,6 @@ function changeCurrentImg(current, next) {
 	$(`li:eq(${current})`).removeClass('current');
 	$(`li:eq(${nextCurrent})`).addClass('current');
 
-	const currentImg = $(`li:eq(${nextCurrent}) img`).attr('src');
+	const currentImg = $(`li:eq(${nextCurrent}) img`).attr('src').replace(SMALL_SIZE, BIG_SIZE);
 	$('.slider-current img').attr('src', currentImg);
 }
