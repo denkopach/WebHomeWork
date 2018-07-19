@@ -12,7 +12,7 @@ const IMAGES = [
 ];
 
 $.each(IMAGES, function (index, value) {
-	const imgEl = `<li><img src="${API_URL + BIG_SIZE + '/' + value}" alt="0" class="slider-img"></li>`;
+	const imgEl = `<li><img src="${API_URL}${BIG_SIZE}/${value}" alt="0" class="slider-img"></li>`;
 	$('.slider-previews').append(imgEl);
 });
 
@@ -62,6 +62,7 @@ function changeCurrentImg(current, next) {
 	}
 	$(`li:eq(${current})`).removeClass('current');
 	$(`li:eq(${nextCurrent})`).addClass('current');
+
 	const currentImg = $(`li:eq(${nextCurrent}) img`).attr('src');
 	$('.slider-current img').attr('src', currentImg);
 }
