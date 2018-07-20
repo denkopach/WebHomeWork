@@ -11,16 +11,16 @@ const IMAGES = [
   '?image=1039'
 ];
 
-const sliderPrew = $('.slider-previews');
+const sliderPreview = $('.slider-previews');
 let imgEl = '';
 $.each(IMAGES, function (index, value) {
 	imgEl += `<li><img src="${API_URL}${SMALL_SIZE}/${value}" alt="0"></li>`;
 });
-sliderPrew.append(imgEl);
+sliderPreview.append(imgEl);
 
-const sliderPrewLi = $('.slider-previews li');
-sliderPrewLi.first().addClass('current');
-sliderPrewLi.hover(	
+const sliderPreviewElElements = $('.slider-previews li');
+sliderPreviewElElements.first().addClass('current');
+sliderPreviewElElements.hover(	
 	function(){
 		$(this).addClass('liFocus');
 	},
@@ -30,8 +30,8 @@ sliderPrewLi.hover(
 );
 
 const sliderCurrentImg = $('.slider-current img');
-sliderPrewLi.click(function(event){
-	sliderPrew.find('.current').removeClass('current');
+sliderPreviewElElements.click(function(event){
+	sliderPreview.find('.current').removeClass('current');
 	$(this).addClass('current');
 	
 	const currentImg = $(event.target).attr('src').replace(SMALL_SIZE, BIG_SIZE);
@@ -59,8 +59,8 @@ function changeCurrentImg(current, next) {
 	} else if (nextCurrent < 0) {
 		nextCurrent = itemCount - 1;
 	}
-	sliderPrewLi.eq(current).removeClass('current');
-	sliderPrewLi.eq(nextCurrent).addClass('current');
-	const currentImg = sliderPrewLi.eq(nextCurrent).find('img').attr('src').replace(SMALL_SIZE, BIG_SIZE);
+	sliderPreviewElElements.eq(current).removeClass('current');
+	sliderPreviewElElements.eq(nextCurrent).addClass('current');
+	const currentImg = sliderPreviewElElements.eq(nextCurrent).find('img').attr('src').replace(SMALL_SIZE, BIG_SIZE);
 	sliderCurrentImg.attr('src', currentImg);
 }
