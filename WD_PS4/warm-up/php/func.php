@@ -1,9 +1,9 @@
 <?php
 
-if (stristr($_SERVER["PHP_SELF"], "func.php")) {
-    header("Location:../index.php");
-}
+
 session_start(); 
+ini_set('display_errors',1);
+error_reporting(E_ALL);
 $_SESSION['task'] = $_POST['submit'];
 $result;
 switch ($_SESSION['task']) {
@@ -44,6 +44,7 @@ function getSumEl($withOutDigits = []) {
 }
     
 function drawFurTree() {
+    $res = '';
     for ($line = 1; $line <= 50; $line++) {
         $res .= str_repeat('*', $line) . '<br>';
     }
@@ -53,6 +54,7 @@ function drawFurTree() {
 function drawChessboard() {
     $linesAmount = $_POST['task4-lines'];
     $columnsAmount = $_POST['task4-column'];
+    $res = '';
 
     if (!checkDigits($linesAmount) || !checkDigits($columnsAmount)) {
         return alarmErrorNum();
@@ -75,7 +77,7 @@ function drawChessboard() {
 
 function sumDigitsNumber() {
     $input = abs($_POST['task5-input']);
-    if (!checkDigits($input)) {
+    if (!is_numeric($input)) {
         return alarmErrorNum();
     }
     return array_sum(str_split($input));
