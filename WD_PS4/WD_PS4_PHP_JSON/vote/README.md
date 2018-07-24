@@ -1,1 +1,0 @@
-For correct operation, remove the tick from the "read only" to json/data.json
