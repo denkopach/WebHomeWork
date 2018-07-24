@@ -11,7 +11,7 @@ switch ($_SESSION['task']) {
     $result = getSumEl();
     break;
 case 'task2':
-    $result = getSumElWithOut237();
+    $result = getSumEl([2, 3, 7]);
     break;
 case 'task3':
     $result = drawFurTree();
@@ -27,89 +27,58 @@ case 'task6':
     break;
 }
 $_SESSION['result'] = $result;
+header("Location:../index.php#{$_SESSION['task']}");
 
-header("Location:../index.php");
-
-function addEllP($res) {
-    return '<p>' . $res . '</p>';
-}
-
-function getSumEl() {
+function getSumEl($withOutDigits = []) {
     $count = 0;
     for ($i = -1000; $i <= 1000; $i++){
-        $count += $i;
-    }
-    return addEllP($count);
-}
-
-function getSumElWithOut237() {
-    $count = 0;
-
-    for ($i = -1000; $i <= 1000; $i++) {
-        
-        $tmp = abs($i) % 10;
-        
-        if ($tmp === 2 || $tmp === 3 || $tmp === 7) {
+        if (empty($withOutDigits)) {
             $count += $i;
+        } else {
+            if (in_array(abs($i) % 10, [2, 3, 7])) {
+                $count += $i;
+            }
         }
     }
-
-    return addEllP($count);
+    return $count;
 }
     
 function drawFurTree() {
-    $res = '';
-    $line = '';
-
-    for ($i = 1; $i <= 50; $i++) {
-        
-        for ($j = 1; $j <= $i; $j++) {
-            $line .= '*';
-        }
-        
-        $res = $res . $line . '<br>';
-        $line = '';
+    for ($line = 1; $line <= 50; $line++) {
+        $res .= str_repeat('*', $line) . '<br>';
     }
-    return addEllP($res);
+    return $res;
 }
 
 function drawChessboard() {
-    $res = '';
-    $lines = $_POST['task4-lines'];
-    $column = $_POST['task4-column'];
+    $linesAmount = $_POST['task4-lines'];
+    $columnsAmount = $_POST['task4-column'];
 
-    if (!checkDigits($lines) || !checkDigits($column)) {
+    if (!checkDigits($linesAmount) || !checkDigits($columnsAmount)) {
         return alarmErrorNum();
     }
-    if ($lines > 100 || $column > 100) {
-        return '<p class="error">please enter number to 100!</p>';
+    if ($linesAmount > 100 || $columnsAmount > 100) {
+        return 'please enter number to 100!';
     }
-    for ($i = 0; $i < $column; $i++) {
-        
-        $line = '<div class="task4-line">';
-        
-        for ($j = 0; $j < $lines; $j++) {
-            
-            if (($j + $i) % 2 === 0) {
-                $line .= '<div class="task4-cell"></div>';
-            } else {
-                $line .= '<div class="task4-cell even"></div>';
-            }
+    for ($column = 0; $column < $columnsAmount; $column++) {
+        $res .= '<div class="task4-line">';
+
+        for ($line = 0; $line < $linesAmount; $line++) {
+            $even = ($line + $column) % 2 === 0 ? 'even' : '';
+            $res .= "<div class='task4-cell {$even}'></div>";
         }
-        
-        $line .= '</div>';
-        
-        $res .= $line;
+
+        $res .= '</div>';
     }
     return $res;
 }
 
 function sumDigitsNumber() {
-    $input = $_POST['task5-input'];
+    $input = abs($_POST['task5-input']);
     if (!checkDigits($input)) {
         return alarmErrorNum();
     }
-    return addEllP(array_sum(str_split((string) abs($input))));
+    return array_sum(str_split($input));
 }
 
 function arrayOperations() {
