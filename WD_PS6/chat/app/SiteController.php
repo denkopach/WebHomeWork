@@ -8,7 +8,7 @@ class SiteController
         include $configs->header;
 
 
-        Db::createDb();
+        CreateDb::create();
         
         if (isset($_SESSION['auth'])) {
             include $configs->chatForm;
