@@ -10,11 +10,8 @@ function addVote($choice, $filename, $valueForVote) {
         var_dump($choice);
         throw new Exception('Error! Selection error');
     }
-    if (isset($taskList[$choice])) {
-        $taskList[$choice] += 1;    
-    } else {
-        $taskList[$choice] = 1;
-    }
+    $taskList[$choice] = isset($taskList[$choice]) ? $taskList[$choice] + 1 : 1;
+
     if (file_put_contents($filename, json_encode($taskList, JSON_PRETTY_PRINT)) !== false) {
         return true;
     } else {

@@ -1,10 +1,10 @@
 <?php 
 
 return array(
-    'contactChoice1' => 'C',
-    'contactChoice2' => 'C++',
-    'contactChoice3' => 'Java',
-    'contactChoice4' => 'Go',
-    'contactChoice5' => 'Js',
-    'contactChoice6' => 'other'
+    '1' => 'C',
+    '2' => 'C++',
+    '3' => 'Java',
+    '4' => 'Go',
+    '5' => 'Js',
+    '6' => 'other'
 );
