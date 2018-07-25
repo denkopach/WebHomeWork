@@ -46,7 +46,7 @@ class UserController
 	private static function getArrayFromDB() {
 		global $configs;
 		$filename = $configs->users;
-		if (!FileController::checkFileRW($filename)) {
+		if (!FileController::checkFileWritable($filename)) {
 			return false;
 		}
 		return json_decode(file_get_contents($filename), true);

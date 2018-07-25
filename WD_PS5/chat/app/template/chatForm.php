@@ -1,7 +1,11 @@
 <div class="block-auth">
 	<div class="block-chat">
+		<?php
+		if (isset($_SESSION["login"])) :
+		    ?>
+		    <div class="greeting">Hello, <?= $_SESSION["login"] ?>!</div>
+		<?php endif; ?>
 		<div class="block-msg-windows" >
-			
 		</div>
 		<form class="formChat" method="post">
 			<input type="text" name="userMsg" class="userMsg">

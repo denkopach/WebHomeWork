@@ -8,7 +8,7 @@ class ChatController
 		global $configs;
 		$filename = $configs->messages;
 		try {
-			FileController::checkFileRW($filename);
+			FileController::checkFileWritable($filename);
 		} catch (Exception $err) {
 			$_SESSION['err'][] = $err->getMessage();
 			return false;
@@ -31,7 +31,7 @@ class ChatController
 		try {
 			global $configs;
 			$filename = $configs->messages;
-			if (!FileController::checkFileRW($filename)) {
+			if (!FileController::checkFileReadable($filename)) {
 				return false;
 			}
 		} catch (Exception $err) {

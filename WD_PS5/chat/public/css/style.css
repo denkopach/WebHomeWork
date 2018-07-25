@@ -117,3 +117,8 @@ width: 100%;
 .error {
 	color: red;
 }
+.greeting {
+	color: red;
+    text-align: left;
+    font-size: 18px;
+}
