@@ -4,7 +4,7 @@ session_start();
 ini_set('display_errors',1);
 error_reporting(E_ALL);
 //enable error logging
-define('LOGGING', true);
+define('LOGGING', false);
 //catalog paths
 define('DIR_PATH', dirname(__DIR__));
 define('PUBLIC_PATH', DIR_PATH.DIRECTORY_SEPARATOR.'public');
