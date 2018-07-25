@@ -36,15 +36,18 @@ $configs = include(__DIR__ . '/config.php');
                 </div>
                 <div class="vote-signature">*make your choice</div>
                 <div class="button submit" onclick="this.parentNode.submit();">&nbsp;Submit&nbsp;</div>
-                <div class='err-msg'>
-                    <?php
-                        if (!empty($_SESSION['err'])) {
-                            print_r($_SESSION['err']);
-                            $_SESSION['err'] = [];
-                        }
-                    ?>
-                </div>
             </form>
+            <div class='err-msg'>
+                <?php
+                    if (!empty($_SESSION['err'])):
+                        foreach ($_SESSION['err'] as $key => $value): ?>
+                            <p><?= $value ?></p>
+                <?php
+                        endforeach;
+                    endif;
+                    $_SESSION['err'] = [];
+                ?>
+            </div>
         </div>
     </div>
 </body>
