@@ -4,6 +4,7 @@ body{
 	background: #b9c783;
 	color: #635960;
 	font-family: 'Montserrat', sans-serif;
+	font-size: 18px;
 }
 .block-auth input[type="submit"], .block-auth input[type="button"]{
 	background-color: #635960;
@@ -121,4 +122,9 @@ width: 100%;
 	color: red;
     text-align: left;
     font-size: 18px;
+}
+.block-msg-windows img{
+	top: 4px;
+    position: relative;
+    width: 18px;
 }
