@@ -20,14 +20,6 @@ sliderPreview.append(imgEl);
 
 const sliderPreviewElElements = $('.slider-previews li');
 sliderPreviewElElements.first().addClass('current');
-sliderPreviewElElements.hover(	
-	function(){
-		$(this).addClass('liFocus');
-	},
-	function(){
-		$(this).removeClass('liFocus');
-	}
-);
 
 const sliderCurrentImg = $('.slider-current img');
 sliderPreviewElElements.click(function(event){
