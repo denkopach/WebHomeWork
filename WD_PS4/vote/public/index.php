@@ -18,10 +18,20 @@ $configs = include(__DIR__ . '/config.php');
                 <div class="vote-radio">
                     <?php
                     $valueForVote = include $configs->valueForVote;
-                    foreach ($valueForVote as $key => $value) {
-                        $checked = ($key === 'contactChoice1') ? ' checked' : '';
-                        echo '<input type="radio" name="vote" value="' . $key . '"' . $checked . '>' . $value . '<br>';
-                    }
+                    $isFirst = true;
+                    foreach ($valueForVote as $key => $value):
+                        $checked = ($isFirst) ? ' checked' : '';
+                    ?>
+                        <input 
+                            type="radio"
+                            name="vote" 
+                            value= <?= $key ?>  
+                            <?= $checked ?>
+                        >   <?= $value ?>   <br>
+                        
+                    <?php
+                        $isFirst = false;   
+                        endforeach;
                     ?>
                 </div>
                 <div class="vote-signature">*make your choice</div>

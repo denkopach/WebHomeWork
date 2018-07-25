@@ -1,22 +1,26 @@
 <?php
 session_start();
+//show errors
+ini_set('display_errors',1);
+error_reporting(E_ALL);
 //enable error logging
 define('LOGGING', true);
 //catalog paths
-define('PATH_TO_DIR', dirname(__DIR__));
-define('PATH_TO_DIR_PUBLIC', PATH_TO_DIR . '\public');
-define('PATH_TO_DIR_APP', PATH_TO_DIR . '\app');
-define('PATH_TO_DIR_TEMPLATE', PATH_TO_DIR_APP . '\template');
-define('PATH_TO_DIR_DB', PATH_TO_DIR_APP . '\dB');
+define('DIR_PATH', dirname(__DIR__));
+define('PUBLIC_PATH', DIR_PATH.DIRECTORY_SEPARATOR.'public');
+define('APP_PATH', DIR_PATH.DIRECTORY_SEPARATOR.'app');
+define('TEMPLATE_PATH', APP_PATH.DIRECTORY_SEPARATOR.'template');
+define('DB_PATH', APP_PATH.DIRECTORY_SEPARATOR.'dB');
 //file paths
 return (object) array(
-    'voteForm' => PATH_TO_DIR_TEMPLATE . '\voteForm.php',
-    'voteResForm' => PATH_TO_DIR_TEMPLATE . '\voteResForm.php',
-    'data' => PATH_TO_DIR_DB . '\data.json',
-    'valueForVote' => PATH_TO_DIR_DB . '\valueForVote.php',
-    'dB' => PATH_TO_DIR_APP . '\dB.php',
-    'addVote' => PATH_TO_DIR_APP . '\addVote.php',
-    'getVote' => PATH_TO_DIR_APP . '\getVote.php',
+	'FileController' => APP_PATH.DIRECTORY_SEPARATOR.'FileController.php',
+    'voteForm' => TEMPLATE_PATH.DIRECTORY_SEPARATOR.'voteForm.php',
+    'voteResForm' => TEMPLATE_PATH.DIRECTORY_SEPARATOR.'voteResForm.php',
+    'data' => DB_PATH.DIRECTORY_SEPARATOR.'data.json',
+    'valueForVote' => DB_PATH.DIRECTORY_SEPARATOR.'valueForVote.php',
+    'dB' => APP_PATH.DIRECTORY_SEPARATOR.'dB.php',
+    'addVote' => APP_PATH.DIRECTORY_SEPARATOR.'addVote.php',
+    'getVote' => APP_PATH.DIRECTORY_SEPARATOR.'getVote.php',
     'main' => '/',
-    'result' => '/result.php',
+    'result' => '../result.php',
 );

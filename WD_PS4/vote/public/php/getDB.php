@@ -2,24 +2,15 @@
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header("location:/"); 
 }
-$configs = include __DIR__ . '\..\config.php';
+$configs = include __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'config.php';
 $valueForVote = include $configs->valueForVote;
 $filename = $configs->data;
-$choice = $_POST['vote'];
-$getVoteRes = $_POST['getVoteRes'];
-if (isset($choice)) {
+
+if (isset($_POST['vote'])) {
     include $configs->addVote;
-    try {
-        addVote($choice, $filename, $valueForVote);
-    } catch (Exception $err) {
-        echo $_SESSION['err'] = $err;
-    }
+    addVote($_POST['vote'], $filename, $valueForVote);
     header("location:" . $configs->result);
-} elseif (isset($getVoteRes)) {
+} elseif (isset($_POST['getVoteRes'])) {
     include $configs->getVote;
-    try {
-        echo getVoteResult($filename, $valueForVote);
-    } catch (Exception $err) {
-        echo $_SESSION['err'] = $err;
-    }
+    echo getVoteResult($filename, $valueForVote);
 }
