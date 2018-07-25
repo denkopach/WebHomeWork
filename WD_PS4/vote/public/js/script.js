@@ -1,4 +1,4 @@
-const pathBackend = 'php/getDB.php';
+const pathBackend = "php/handler.php";
 
 $.ajax({
     type: "POST",
@@ -38,8 +38,6 @@ function chart(array) {
 }
 
 function logErrors(err) {
-    if('<?= LOGGING ?>') {
-        $('#piechart').append('the results of voting are not available');
-        console.log(err);
-    }
+    $('#piechart').append('the results of voting are not available');
+    console.log(err);
 }

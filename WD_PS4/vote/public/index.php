@@ -14,7 +14,7 @@ $configs = include(__DIR__ . '/config.php');
     <div class="block-vote">
         <div class="task">
             Select your favorite <br>programming language:
-            <form method="post" action=<?= $configs->getDB ?>>
+            <form method="post" action=<?= $configs->handler ?>>
                 <div class="vote-radio">
                     <?php
                     $valueForVote = include $configs->valueForVote;
@@ -25,7 +25,7 @@ $configs = include(__DIR__ . '/config.php');
                         <input 
                             type="radio"
                             name="vote" 
-                            value= <?= $key ?>  
+                            value= <?= $value ?>  
                             <?= $checked ?>
                         >   <?= $value ?>   <br>
                         

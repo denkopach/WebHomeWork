@@ -23,5 +23,5 @@ return (object) array(
     'getVote' => APP_PATH.DIRECTORY_SEPARATOR.'getVote.php',
     'main' => '/',
     'result' => '../result.php',
-    'getDB' => 'php/getDB.php',
+    'handler' => 'php/handler.php',
 );

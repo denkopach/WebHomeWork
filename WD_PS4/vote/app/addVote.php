@@ -6,8 +6,7 @@ function addVote($choice, $filename, $valueForVote) {
     if (FileController::checkFileReadable($filename)) {
         $taskList = json_decode(file_get_contents($filename), true);
     }
-    if (!isset($valueForVote[$choice])) {
-        var_dump($choice);
+    if (!in_array($choice, $valueForVote)) {
         throw new Exception('Error! Selection error');
     }
     $taskList[$choice] = isset($taskList[$choice]) ? $taskList[$choice] + 1 : 1;
