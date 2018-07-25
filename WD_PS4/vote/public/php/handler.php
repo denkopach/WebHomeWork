@@ -22,4 +22,7 @@ if (isset($_POST['vote'])) {
     catch(Exception $err) {
         $_SESSION['err'][] = $err->getMessage();
     }
+} else {
+    $_SESSION['err'][] = 'Voting error. try again';
+    header("location:".$configs->main); 
 }
