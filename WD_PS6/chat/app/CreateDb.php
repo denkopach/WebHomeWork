@@ -19,6 +19,7 @@ class CreateDb
                 `pass` VARCHAR( 30 ) NOT NULL,
                 `time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP )" ;
             $db->exec($sql);
+
             $sql = "CREATE table messages(
                 `newid` INT(11) unsigned AUTO_INCREMENT PRIMARY KEY,
                 `name` VARCHAR(30) NOT NULL, 

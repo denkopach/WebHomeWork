@@ -7,7 +7,6 @@ class SiteController
 
         include $configs->header;
 
-
         CreateDb::create();
         
         if (isset($_SESSION['auth'])) {
@@ -19,3 +18,4 @@ class SiteController
         include $configs->footer;
     }
 }
+
