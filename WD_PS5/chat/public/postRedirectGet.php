@@ -1,8 +1,7 @@
 <?php
 
 if ($_POST) {
-		define('ROOT', dirname(dirname(__FILE__)));
-		$configs = include(ROOT.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'/config.php');
+		$configs = include('config.php');
 
 		if (isset($_POST['btnExt'])) {
 			$_SESSION = array();
@@ -50,5 +49,6 @@ if ($_POST) {
 			die();
 		}
 }
-   header("Location: /");
+	$location = $configs->main;
+   header("Location: ./" );
    exit();

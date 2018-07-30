@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function(){
 	updChat();
 	setInterval(updChat, 1000);
 
