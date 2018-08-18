@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Landing page</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">
+
+    <header class="header">
+        <div class="row">
+            <div class="col">
+                <div class="logo">N<span><b>++</b></span></div>
+            </div>
+            <div class="col">
+                <nav class="links">
+                    <a href="#products" id="products-link">PRODUCTS</a>
+                    <a href="#info" id="info-link">ABOUT US</a>
+                    <a href="#contacts" id="contacts-link">CONTACT US</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="products" class="products-section">
+        <article>
+            <div class="row">
+                <div class="col">
+                    <div class="phone">
+                        <img src="images/tour-device3.png" alt="mobile-products">
+                    </div>
+                </div>
+                <div class="col">
+                    <h2>Our awesome app is ready to use!</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium iure mollitia provident?
+                        Alias
+                        autem enim in modi. Consequatur incidunt modi molestias tempora vel. Asperiores, error ex magni
+                        officiis
+                        quibusdam temporibus.
+                    </p>
+                    <a href="" class="button">Buy now!</a>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <section id="info" class="info-section">
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="icon">
+                        <i class="fa fa-code fa-2x fa-inverse"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <span class="info-title">Web Development</span>
+                </div>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab asperiores consequuntur minus, odit quas
+                quis tenetur unde vitae. A accusamus cumque deserunt eos, excepturi iste labore nulla perferendis
+                reprehenderit velit?
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="icon">
+                        <i class="fa fa-android fa-2x fa-inverse"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <span class="info-title">Mobile Development</span>
+                </div>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto iusto nobis sequi vero. Deleniti
+                ea, rem. Amet distinctio ducimus fugit impedit maxime natus non quasi ratione suscipit totam. Accusamus,
+                ipsa.
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="icon">
+                        <i class="fa fa-cloud fa-2x fa-inverse"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <span class="info-title">Hightload</span>
+                </div>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus assumenda, atque aut consectetur
+                corporis dicta excepturi magni molestias nemo nisi non numquam odit perspiciatis sapiente vitae. Magnam
+                non repudiandae unde!
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <section id="contacts" class="contacts-section">
+            <div class="row">
+                <h2>Contact us</h2>
+            </div>
+            <div class="row contacts-form-block">
+                <form action="">
+                    <div class="col">
+                        <input type="text" placeholder="Type your name please">
+                    </div>
+                    <div class="col">
+                        <input type="email" placeholder="Type your email please">
+                    </div>
+                    <div class="col">
+                        <input type="tel" placeholder="Type your phone please">
+                    </div>
+                    <div class="col">
+                        <textarea name="" id="" cols="30" rows="5" placeholder="Ask your question"></textarea>
+                    </div>
+                    <div class="row">
+                        <button type="button" class="button" id="extra-inputs-btn" onclick="showInfo()">More inputs</button>
+                    </div>
+                    <div class="example-inputs hidden" id="example-inputs">
+                        <div class="row">
+                            <input type="radio" name="gender" title="gender" value="male" checked> Male<br>
+                            <input type="radio" name="gender" title="gender" value="female"> Female<br>
+                            <input type="radio" name="gender" title="gender" value="other"> Other
+                        </div>
+                        <div class="row">
+                            <input type="checkbox" name="vehicle1" value="Bike" title="vehicle"> I have a bike<br>
+                            <input type="checkbox" name="vehicle2" value="Car" title="vehicle"> I have a car
+                        </div>
+                        <div class="row">
+                            <label for="color">Select your favorite color:</label>
+                            <input type="color" name="favcolor" id="color" title="favorite color" value="#00be9c">
+                        </div>
+                        <div class="row">
+                            <label for="password">Look how awesome password input is:</label>
+                            <input type="password" id="password">
+                        </div>
+                        <div class="row">
+                            <label for="bday-date">Birthday:</label>
+                            <input type="date" name="bday" title="birthday date" id="bday-date" min="2010-01-02">
+                        </div>
+                        <div class="row">
+                            <label for="bday-month">Birthday (month and year):</label>
+                            <input type="month" name="bdaymonth" id="bday-month">
+                        </div>
+                        <div class="row">
+                            <label for="bday-datetime">Birthday (date and time):</label>
+                            <input type="datetime-local" name="bday-datetime" id="bday-datetime">
+                        </div>
+                        <div class="row">
+                            <input type="button" value="Just input button">
+                        </div>
+                        <div class="row">
+                            <label for="search">Search Google:</label>
+                            <input type="search" name="googlesearch" id="search">
+                        </div>
+                        <div class="row">
+                            <label for="time">Select a time:</label>
+                            <input type="time" name="usr_time" id="time">
+                        </div>
+                        <div class="row">
+                            <label for="url">Add your homepage:</label>
+                            <input type="url" name="homepage" id="url">
+                        </div>
+                        <div class="row">
+                            <label for="week">Select a week:</label>
+                            <input type="week" name="week_year" id="week">
+                        </div>
+                        <div class="row">
+                            <label for="number">Select number from 1 to 5:</label>
+                            <input type="number" name="quantity" min="1" max="5" id="number">
+                        </div>
+                        <div class="row"><label for="range">Just drag it !</label></div>
+                        <div class="row">
+                            <input type="range" name="points" min="0" max="10" id="range">
+                        </div>
+                        <div class="row">
+                            <input type="submit" class="button" value="Send email !">
+                            <input type="reset" class="button" value="Reset">
+                        </div>
+                </form>
+            </div>
+        </section>
+    </footer>
+    <button type="button" id="up-btn" class="up-btn" title="scroll back">Back</button>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

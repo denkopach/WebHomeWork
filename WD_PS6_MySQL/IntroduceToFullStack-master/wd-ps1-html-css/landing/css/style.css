@@ -1,0 +1,182 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.header {
+    background-color: white;
+    padding: 5px;
+}
+
+.links {
+    display: flex;
+    flex-flow: row;
+}
+
+.links a {
+    text-decoration: none;
+    flex: 1;
+}
+
+.links > * {
+    color: black;
+    justify-content: space-around;
+}
+
+.row {
+    display: flex;
+    flex-flow: row;
+}
+
+.logo {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 1em;
+    font-size: 3em;
+}
+
+.logo b {
+    color: #00be9c;
+    font-weight: bolder;
+}
+
+.header .row .col:nth-of-type(1) {
+    flex: 4;
+}
+
+.header .row .col:last-of-type {
+    align-self: center;
+    flex: 2;
+}
+
+.products-section {
+    display: flex;
+    flex: 1;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #00be9c;
+}
+
+.products-section .row .col:last-child {
+    align-self: center;
+}
+
+.phone img {
+    height: 450px;
+    width: 225px;
+}
+
+.button {
+    margin: 1em 1em 1em 1em;
+    padding: 5px;
+    text-decoration: none;
+    font-size: large;
+    color: white;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    background-color: #00be9c;
+}
+
+.products-section .row {
+    justify-content: space-evenly;
+}
+
+.products-section article .row :last-child {
+    flex-basis: 450px;
+}
+
+article .row {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.products-section p {
+    padding-bottom: 1.8em;
+}
+
+.icon {
+    margin-bottom: 1em;
+    padding: 16px 18px 20px 17px;
+    border-radius: 100%;
+    background-color: #00be9c;
+}
+
+.info-section .col {
+    flex-basis: 300px;
+    text-align: center;
+}
+
+.info-section .row {
+    justify-content: center;
+    align-self: center;
+}
+
+.info-section {
+    display: flex;
+    align-self: center;
+    height: 300px;
+}
+
+.info-title {
+    font-weight: bold;
+    padding-bottom: 1em;
+}
+
+.info-section .row .col:nth-of-type(2) .row .icon {
+    padding: 18px 23px 18px 22px;
+}
+
+.contacts-section {
+    display: flex;
+    flex: 1;
+    flex-flow: column;
+    padding-top: 1em;
+    padding-bottom: 3em;
+    background-color: #00be9c;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.contacts-section .row {
+    justify-content: center;
+}
+
+.example-inputs {
+    margin-bottom: 1em;
+}
+
+.example-inputs > .row {
+    margin: .4em;
+}
+
+.contacts-section .row:nth-of-type(2) .col > * {
+    border: none;
+    margin: .15em;
+    width: 550px;
+    min-width: 10%;
+    flex-shrink: 3;
+}
+
+.contacts-section .row:nth-of-type(2) .col:last-child {
+    flex-basis: 40px;
+}
+
+.contacts-section input[type="submit"] {
+    padding: 6px 24px;
+}
+
+.contacts-section input[type="text"], input[type="email"] , input[type="tel"]{
+    padding: 2px;
+    height: 25px;
+}
+
+.contacts-form-block {
+    flex: 1 0 auto;
+    flex-flow: column;
+    align-items: center;
+}
+

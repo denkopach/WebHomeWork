@@ -1,0 +1,35 @@
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+td {
+    height: 20px;
+    width: 20px;
+}
+td.black {
+    background-color: black;
+}
+table {
+    border: 3px solid black;
+    border-collapse: collapse;
+}
+.error{
+    color: darkred;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:10px;
+    padding:1em;
+}
+.result{
+    margin-top: 1em;
+}
+.chessboard{
+    padding-top: 100%;
+}
+.exception{
+    font-size: 56px;
+    font-weight: bold;
+    color: darkred;
+    font-family: Arial,Helvetica , sans-serif;
+}
