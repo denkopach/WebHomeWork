@@ -1,0 +1,49 @@
+body{
+	margin: 0;
+	padding: 0;
+}
+.main{
+	background: url(../images/dinamo.jpeg) no-repeat;
+	-moz-background-size: 100%;
+	-webkit-background-size: 100%;
+	-o-background-size: 100%;
+	background-size: 100%;
+    width: 900px;
+    height: 600px;
+}
+
+.bubble{
+	width: 200px;
+	min-height: 20px; /*min height of DIV should be set to at least 2x the width of the arrow*/
+	background: white;
+	color: black;
+	padding: 5px;
+	position: absolute;
+	word-wrap: break-word;
+	-moz-border-radius: 5px; /*add some nice CSS3 round corners*/
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	margin-bottom: 2em;
+	cursor: move;
+}
+
+.bubble:after{ /*arrow added to downarrowdiv DIV*/
+	content:'';
+	display: block;
+	position: absolute;
+	top: 100%; /*should be set to 100% */
+	left: 0px;
+	width: 0;
+	height: 0;
+	border-color: white transparent transparent transparent; /*border color should be same as div div background color*/
+	border-style: solid;
+	border-width: 10px;
+}
+.bubble-text{
+	margin: 0;
+}
+.bubble-ready{
+	width: auto;
+	max-width: 300px;
+	height: auto;
+}
