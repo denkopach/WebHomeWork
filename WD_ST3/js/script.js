@@ -1,83 +1,89 @@
+const MIN_LEN = 1;
+const ENTER_KEY = 13
+const ESC_KEY = 27
+const TOP_INDENTATION = 40
+const LEFT_INDENTATION = 8
+
+
+function checkInputTextLen(text) {
+	return text.length >= MIN_LEN;
+}
+
+function determineShift(bubble) {
+	let left = $(bubble).offset().left
+	let top = $(bubble).offset().top
+	const cont = $('.main')
+	if (left + $(bubble).outerWidth(true) > cont.outerWidth(true)) {
+		left = cont.outerWidth(true) - $(bubble).outerWidth(true)
+	}
+	if (top + TOP_INDENTATION - $(bubble).outerHeight() < 0) {
+		top = $(bubble).outerHeight() - TOP_INDENTATION
+	}
+	$(bubble).offset({top: top, left: left}) 
+}
+
+function saveMsg(bubble, inputText, key = ENTER_KEY){
+	if (key === ENTER_KEY && checkInputTextLen(inputText)) {
+		$(bubble).text(inputText)
+			.addClass('bubble-ready')
+			.find('input').remove()
+		determineShift(bubble)
+	} else if (key === ENTER_KEY && !checkInputTextLen(inputText)){
+		bubble.remove();
+	} else if (key === ESC_KEY) {
+		$(bubble).text(inputText)
+		console.log(inputText)
+		$(bubble).find('input').remove();
+	}
+	return;
+}
+
 $(function(){
 	let id = 0;
-	
-	$('.main').dblclick(function(e){
-		let bubbles = $('.bubble-ready');
-		let bubble = e.target;
+	$('.main').dblclick(function(e){	
+		const bubble = e.target;
+
 		if (e.target.className.indexOf('bubble') + 1) {
-			let text = e.target.innerText;
-			e.target.innerText = '';
-			let inputEl = $('<input/>');
-			inputEl.addClass('signature')	
-					.val(text)
-					.appendTo(e.target)
-					.focus()
-			$(inputEl).keydown(function(e) {
-				let inputText = inputEl.val();
-				if (e.keyCode === 13 && checkInputTextLen(inputText)) {
-					bubble.innerText = inputText;
-					inputEl.remove();
-					return;
-				}
-				if (e.keyCode === 13 && checkInputTextLen(inputText)){
-					bubble.remove();
-					return;			
-				}
-				if (e.keyCode === 27) {
-					bubble.innerText = text;
-					inputEl.remove();
-					return;
-				}
-			})
+			let text = e.target.textContent;
+			e.target.textContent = '';
+			$('<input/>').addClass('signature')	
+				.val(text)
+				.appendTo(e.target)
+				.focus()
+				.blur(function() {
+					saveMsg(bubble, $(this).val(), ENTER_KEY);
+				})
+				.keydown(function(e) {
+					saveMsg(bubble, $(this).val(), e.keyCode);
+				})
 		} else {
-			let inputEl = $('<input/>');
-			let bubble = $('<div/>');
+			const inputEl = $('<input/>');
+			const bubble = createBubble(e)
 			inputEl.addClass('signature')
-				.appendTo(bubble
-					.addClass('bubble')
-					.attr('id', id++)
-					.css({top: e.offsetY - 40, left: e.offsetX - 8})
-					.appendTo('.main').draggable()
-				)
-			inputEl.focus();
-			$(inputEl).keydown(function(e) {
-				if (e.keyCode === 27) {
-					bubble.remove();
-					return;
-				}
-				let inputText = inputEl.val();
-				if (e.keyCode === 13 && checkInputTextLen(inputText)) {
-					bubble.text(inputText);
-					inputEl.remove();
-					bubble.addClass('bubble-ready')
-					return;
-				}
-				if (e.keyCode === 13 && checkInputTextLen(inputText)){
-					bubble.remove();
-					return;			
-				}
-			})
+				.appendTo(bubble)
+				.focus()
+				.keydown(function(e) {
+					if (e.keyCode === ESC_KEY) {
+						bubble.remove();
+						return
+					}
+					saveMsg(bubble, $(this).val(), e.keyCode);
+				})
+				.blur(function() {
+					saveMsg(bubble, $(this).val(), ENTER_KEY);
+				})
 		}
 	})
-	function checkEnterKey(bubble, inputEl) {
-		$(inputEl).keydown(function(e) {
-			if (e.keyCode === 27) {
-				bubble.remove();
-				return;
-			}
-			let inputText = inputEl.val();
-			if (e.keyCode === 13 && checkInputTextLen(inputText)) {
-				bubble.innerText = inputText;
-				inputEl.remove();
-				return;
-			}
-			if (e.keyCode === 13 && checkInputTextLen(inputText)){
-				bubble.remove();
-				return;			
-			}
+
+function createBubble(e) {
+	return $('<div/>')
+		.addClass('bubble')
+		.attr('id', id++)
+		.css({top: e.offsetY - TOP_INDENTATION, left: e.offsetX - LEFT_INDENTATION})
+		.appendTo('.main')
+		.draggable({
+			containment: 'parent' 
 		})
-	}
-	function checkInputTextLen(text) {
-		return text.length > 2;
-	}
+}
+
 })
