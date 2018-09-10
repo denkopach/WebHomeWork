@@ -128,13 +128,8 @@ $(function(){
 
 		}
 	})
-	// $('.bubble').mouseup(function() {
-	// 	editMsg($(this), $(this).textContent(), e.keyCode)
-	// })
+
 	$(".main").droppable({
-		// drop: function(event, ui) {
-		// 	console.log($(ui.draggable).text())
-		// }
 		drop: function(event, ui) {
 			editMsg(ui.draggable, $(ui.draggable).text())
 		}
