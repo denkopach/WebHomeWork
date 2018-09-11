@@ -8,13 +8,20 @@
 </head>
 <body>
 	<div class="container">
-		<form>
-			<textarea name="string"></textarea>
-			<input type="text" name="regExp">
-			<input type="submit" name="enter">
-			<span name="result"></span>
+		<form onsubmit="return false;">
+			<div class="wrapper">
+				<span>Enter string</span>
+				<textarea name="string"></textarea>
+				<span>Enter regular</span>
+				<input type="text" name="regExp">
+				<br>
+				<input type="submit" name="enter">
+				<br>
+				<span name="result"></span>
+			</div>
 		</form>
 	</div>
+	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="script/script.js"></script>
 </body>
