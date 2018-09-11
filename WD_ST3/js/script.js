@@ -1,8 +1,11 @@
 const MIN_LEN = 1;
-const ENTER_KEY = 13
-const ESC_KEY = 27
-const TOP_INDENTATION = 40
-const LEFT_INDENTATION = 8
+const ENTER_KEY = 13;
+const ESC_KEY = 27;
+const TOP_INDENTATION = 40;
+const LEFT_INDENTATION = 8;
+
+const container = $('.main');
+const containerWidth = container.outerWidth(true);
 
 let id = 0;
 
@@ -11,49 +14,63 @@ function checkInputTextLen(text) {
 }
 
 function determineShift(bubble) {
-    let left = $(bubble).offset().left
-    let top = $(bubble).offset().top
-    const cont = $('.main')
-    if (left + $(bubble).outerWidth(true) > cont.outerWidth(true)) {
-        left = cont.outerWidth(true) - $(bubble).outerWidth(true)
+    const bubbleEl = $(bubble);
+    const bubbleOffset = bubbleEl.offset();
+
+    const bubbleWidth = bubbleEl.outerWidth(true);
+    const bubbleHeight = bubbleEl.outerHeight(true);
+
+    let left = bubbleOffset.left;
+    let top = bubbleOffset.top;
+
+    if (left + bubbleWidth > containerWidth) {
+        left = containerWidth - bubbleWidth;
     }
-    if (top + TOP_INDENTATION - $(bubble).outerHeight() < 0) {
-        top = $(bubble).outerHeight() - TOP_INDENTATION
+    if (top + TOP_INDENTATION - bubbleHeight < 0) {
+        top = bubbleHeight - TOP_INDENTATION;
     }
-    $(bubble).offset({top: top, left: left}) 
+    bubbleEl.offset({top: top, left: left});
 }
 
 function editMsg(bubble, inputText, key = ENTER_KEY){
+    const bubbleEl = $(bubble);
+
     if (key === ENTER_KEY && checkInputTextLen(inputText)) {
-        $(bubble).text(inputText)
+        bubbleEl.text(inputText)
             .addClass('bubble-ready')
-            .find('input').remove()
-        determineShift(bubble)
-        updMsg(bubble)
+            .find('input')
+            .remove();
+        determineShift(bubble);
+        updMsg(bubble);
     } else if (key === ENTER_KEY && !checkInputTextLen(inputText)){
-        bubble.isDel = 1
-        updMsg(bubble)
-        $(bubble).empty().remove();
+        bubble.isDel = true;
+        updMsg(bubble);
+        bubbleEl.empty().remove();
     } else if (key === ESC_KEY) {
-        $(bubble).text(inputText)
-        $(bubble).find('input').remove();
+        bubbleEl.text(inputText);
+        bubbleEl.find('input').remove();
+        return false;
     }
-    return;
+    return true;
 }
 
 function updMsg(obj) {
-    if (!obj.isDel || obj.isDel === null) {
-        obj.isDel = 0;
+    const bubble = $(obj);
+    const bubbleOffset = bubble.offset();
+    let isDel = obj.isDel;
+
+    if (!isDel || isDel === null) {
+        isDel = false;
     }
     $.ajax({
         url: "php/app.php",
         method: "POST",
         data: {
-            msg: $(obj).text(),
-            id: $(obj).attr('id'),
-            offsetX: $(obj).offset().left + 8,
-            offsetY: $(obj).offset().top + 40,
-            isDel: obj.isDel,
+            msg: bubble.text(),
+            id: bubble.attr('id'),
+            offsetX: bubbleOffset.left + LEFT_INDENTATION,
+            offsetY: bubbleOffset.top + TOP_INDENTATION,
+            isDel: isDel,
         },
     })
 }
@@ -68,7 +85,7 @@ function getAllMsg() {
         },
     }).done(function (res) {
         for (let i in res) {
-            addBubble(res[i])
+            addBubble(res[i]);
             id = Number(res[i].id) + 1;
         }
     })
@@ -81,57 +98,60 @@ function createBubble(obj) {
         .appendTo('.main')
         .draggable({
             containment: 'parent' 
-        })
+        });
 }
 function addBubble(obj) {
-    const bubble = createBubble(obj)
-    $(bubble).text(obj.msg)
-        .addClass('bubble-ready')
+    $(createBubble(obj))
+        .text(obj.msg)
+        .addClass('bubble-ready');
 }
 
 $(function(){
     getAllMsg();
-    $('.main').dblclick(function(e){    
+    container.dblclick(function(e){    
         const bubble = e.target;
 
-        if (e.target.className.indexOf('bubble') + 1) {
-            let text = e.target.textContent;
-            e.target.textContent = '';
+        if (bubble.className.indexOf('bubble') !== -1) {
+            let text = bubble.textContent;
+            bubble.textContent = '';
             $('<input/>').addClass('signature') 
                 .val(text)
-                .appendTo(e.target)
+                .appendTo(bubble)
                 .focus()
                 .blur(function() {
                     editMsg(bubble, $(this).val(), ENTER_KEY)
                 })
                 .keydown(function(e) {
-                    editMsg(bubble, $(this).val(), e.keyCode)
-                })
+                    if(!editMsg(bubble, $(this).val(), e.keyCode)) {
+                        bubble.textContent = text;
+                    }
+                });
         } else {
-            const inputEl = $('<input/>');
-            const bubble = createBubble(e)
-            bubble.isDel = 0
-            id++
-            inputEl.addClass('signature')
+            const bubble = createBubble(e);
+
+            bubble.isDel = false;
+            id++;
+            $('<input/>').addClass('signature')
                 .appendTo(bubble)
                 .focus()
                 .keydown(function(e) {
-                    if (e.keyCode === ESC_KEY) {
+                    const keyCode = e.keyCode;
+                    if (keyCode === ESC_KEY) {
                         bubble.remove();
-                        return
+                        return;
                     }
-                    editMsg(bubble, $(this).val(), e.keyCode);
+                    editMsg(bubble, $(this).val(), keyCode);
                 })
                 .blur(function() {
                     editMsg(bubble, $(this).val(), ENTER_KEY);
-                })
-
+                });
         }
     })
 
-    $(".main").droppable({
+    container.droppable({
         drop: function(event, ui) {
-            editMsg(ui.draggable, $(ui.draggable).text())
+            editMsg(ui.draggable, $(ui.draggable).text());
         }
     });
 })
+

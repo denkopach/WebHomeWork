@@ -15,7 +15,7 @@ if (isset($_POST['getAllMsg'])) {
         $allMsg = [];
     }
     $allMsg = array_filter($allMsg, function($msg){
-            return $msg['isDel'] != 1;
+            return $msg['isDel'] !== 'true';
         });
     echo json_encode(
             $allMsg, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
