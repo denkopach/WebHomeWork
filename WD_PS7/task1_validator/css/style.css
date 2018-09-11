@@ -1,7 +1,42 @@
 .container {
+	margin: 4px;
 	display: flex;
-	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+
+}
+input {
+	border-width: 4px;
 }
 .block-grid {
 	display: grid;
+}
+.block-center {
+	margin-left: auto;
+	margin-right: auto;	
+}
+.block-invisible {
+	display: none;
+}
+.error {
+	display: block;
+	color: red;
+}
+.novalid {
+	border-color: red;
+	border-width: 4px;
+}
+.valid {
+	border-color: green;
+	border-width: 4px;
+}
+.php-result {
+	float: left;
+}
+.wrapper {
+	display: grid;
+	grid-template-columns: auto auto 100px;
+	grid-gap: 10px;
+	background-color: #fff;
+	color: #444;
 }
