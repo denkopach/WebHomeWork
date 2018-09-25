@@ -3,7 +3,7 @@
 class UserController
 {   
     private $db;
-    function UserController()
+    function __construct()
     {
         $this->db = Db::getConnection();
     }
