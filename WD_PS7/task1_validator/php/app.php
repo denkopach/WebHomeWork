@@ -21,5 +21,5 @@ foreach($inputData as $index => $val){
 		$error[$index] = preg_match($pattern[$index], $val);
 	}
 }
-
+header("Content-type:application/json");
 echo json_encode($error, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);

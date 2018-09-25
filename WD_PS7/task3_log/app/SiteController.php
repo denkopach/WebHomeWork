@@ -4,7 +4,6 @@ class SiteController
     static function actionIndex()
     {
         global $configs;
-
         include $configs->header;
 
         if ($configs->createDb)  {
