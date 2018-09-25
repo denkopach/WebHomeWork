@@ -1,20 +1,13 @@
-Рекомендуемые требования:
- - PHP Version 5.5
- - Apache Version 2.4
- - MySQL Version 5.6
- 
- =======================
- 
- Для работы приложения необходимо:
- 
- 1 вариант (автоматическое создание бд)
- - В файле app/config/dbParams.php внести актуальные данные
- - В файле app/config/config.php переменная createDb должна быть true
- - Приложение само создаст БД и таблицы которые необходимы для работы
- - Для корректной работы приложения используйте уникальное имя для БД.
+# WD PS7 Logging
 
- 2 вариант (ручной)
- - Создать БД
- - Импортировать таблицы из "bd_chat.sql" 
- - В файле app/config/dbParams.php внести актуальные данные
- - В файле app/config/config.php переменная createDb должна быть false.
+## Recommended requirements for running the application
+
+ - **PHP** Version 5.5 [Download here.](http://php.net/downloads.php)
+ - **Apache** Version 2.4 [Download here.](https://httpd.apache.org/download.cgi)
+ - **MySQL** Version 5.6 [Download here.](https://dev.mysql.com/downloads/)
+ 
+## To start the application you need
+ 
+- Create database.
+- Go to `sql/chat.sql` and import **sql** file into new database.
+- Go to `app/config/dbParams.php` and enter your data to config.
