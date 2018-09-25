@@ -14,14 +14,16 @@ class ChatController
         $result = $db->prepare($sql);
         $result->bindParam(':name', $name, PDO::PARAM_STR);
         $result->bindParam(':msg', $msg, PDO::PARAM_STR);
+        return $result->execute();
     }
 
-    static function getMsg()
-    {
+    static function getMsg($lastId) {
         $db = Db::getConnection();
-        $sql = 'SELECT * FROM messages WHERE `time` >= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 1 HOUR)';
+        if (empty($lastId)) {
+            $lastId = 0;
+        }
+        $sql = 'SELECT * FROM messages WHERE `time` >= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 1 HOUR) AND `newid` > ?';
         $result = $db->prepare($sql);
-        $result->execute();
-        return $result->fetchAll();
+        return $result->execute(array($lastId)) ? $result->fetchAll() : false;
     }
 }

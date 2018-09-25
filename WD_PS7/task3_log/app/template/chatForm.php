@@ -12,7 +12,7 @@
             <input type="button" name="btnMsg" value=" Send " class="send-message-btn">
         </form>
         <form method="post" action="postRedirectGet.php">
-            <input type="submit" name="btnExt" value="Logout">
+            <input type="button" name="btnExt" value="Logout" class="exit-btn">
         </form>
     </div>
 </div>

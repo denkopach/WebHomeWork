@@ -43,7 +43,6 @@ body{
 	background-color: #fffecd;
 	border: none;
 	height: 40px;
-	padding-left: 12px;
 	color: #A9A9A9;
 	font-size: 1.3Em;
 	font-family: 'Montserrat', sans-serif;
@@ -106,7 +105,7 @@ width: 100%;
 .block-auth .formChat input[type="text"]{
 	width: 74%;
 }
-.block-chat input[type="button"]{
+.send-message-btn {
 	padding-left: 30px;
 	width: 20%;
 }

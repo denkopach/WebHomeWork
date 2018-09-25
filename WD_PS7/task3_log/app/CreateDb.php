@@ -1,7 +1,7 @@
 <?php
 class CreateDb
 {
-	public static function create()
+    public static function create()
     {
         try {
             global $configs;

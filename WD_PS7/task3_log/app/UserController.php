@@ -1,69 +1,76 @@
 <?php
 
 class UserController
-{
-    static function authorization($name, $pass)
+{   
+    private $db;
+    function UserController()
+    {
+        $this->db = Db::getConnection();
+    }
+    public function authorization($name, $pass)
     {
         global $configs;
         $errors = include $configs->error;
         try {
-            if (self::checkUserAndPass($name, $pass)) {
+            if ($this->checkUserAndPass($name, $pass)) {
                 return true;
             }
 
-            if (self::checkUserExist($name)) {
+            if ($this->checkUserExist($name)) {
+                Logger::log("INFO", 'wrong pass', "authorization");
                 $_SESSION['loginErr'][] = $errors['passIsWrong'];
                 return false;
             }
 
-            if (self::addNewUser($name, $pass)) {
+            if ($this->addNewUser($name, $pass)) {
                 return true;
             }
+            Logger::log("INFO", 'somethingWrong', "authorization");
             $_SESSION['err'][] = $errors['somethingWrong'];
             return false;
 
         } catch (Exception $err){
+            Logger::log("ERROR", $err->getMessage(), "authorization");
             $_SESSION['err'][] = $err->getMessage();
             return false;
         }
     }
-    private static function addNewUser($name, $pass)
+    private function addNewUser($name, $pass)
     {
 
-        $db = Db::getConnection();
-        $sql = 'INSERT INTO users (name, pass) '
+        $sql = 'INSERT INTO users (name, pass)'
                 . 'VALUES (:name, :pass)';
 
-        $result = $db->prepare($sql);
+        $result = $this->db->prepare($sql);
         $result->bindParam(':name', $name, PDO::PARAM_STR);
         $result->bindParam(':pass', $pass, PDO::PARAM_STR);
-        return $result->execute();
+
+        $resp = $result->execute();
+        $_SESSION['id'] = $this->db->lastInsertId();
+        return $resp;
     }
 
-    private static function checkUserAndPass($name, $pass)
+    private function checkUserAndPass($name, $pass)
     {
-        $db = Db::getConnection();
-        $sql = 'SELECT * FROM users WHERE name = :name AND pass = :pass';
-        $result = $db->prepare($sql);
+        $sql = 'SELECT newid FROM users WHERE name = :name AND pass = :pass';
+        $result = $this->db->prepare($sql);
         $result->bindParam(':name', $name, PDO::PARAM_STR);
         $result->bindParam(':pass', $pass, PDO::PARAM_STR);
         $result->execute();
-
-        $user = $result->fetch();
-        if ($user) {
+        $userID = $result->fetch();
+        if ($userID) {
+            $_SESSION['id'] = $userID[0];
             return true;
         }
         return false;
     }
 
-    private static function checkUserExist($name)
+    private function checkUserExist($name)
     {
-        $db = Db::getConnection();
         $sql = 'SELECT * FROM users WHERE name = :name';
-        $result = $db->prepare($sql);
+        $result = $this->db->prepare($sql);
         $result->bindParam(':name', $name, PDO::PARAM_STR);
         $result->execute();
-
         $user = $result->fetch();
         if ($user) {
             return true;

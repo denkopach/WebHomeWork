@@ -14,3 +14,4 @@
     <div class="logo">
         Easy Chat
     </div>
+    

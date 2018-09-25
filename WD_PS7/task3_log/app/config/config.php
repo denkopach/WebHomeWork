@@ -14,8 +14,8 @@ define('CONFIG_PATH', APP_PATH.DIRECTORY_SEPARATOR.'config');
 require_once(APP_PATH.DIRECTORY_SEPARATOR.'Autoload.php');
 
 return (object) array(
-	'createDb' => true,
-
+    'createDb' => false,
+    'logFile' => CONFIG_PATH.DIRECTORY_SEPARATOR.'logs.log',
     'dbParams' => CONFIG_PATH.DIRECTORY_SEPARATOR.'dbParams.php',
     'header' => TEMPLATE_PATH.DIRECTORY_SEPARATOR.'header.php',
     'footer' => TEMPLATE_PATH.DIRECTORY_SEPARATOR.'footer.php',
