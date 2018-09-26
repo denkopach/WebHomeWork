@@ -52,20 +52,20 @@ $(function(){
 
 	$('.block-chat').on('click', '.btmMsg', function() {
 		addMsgInChat();
-	})
+	});
 
-	$('.formChat').keypress(function (event) {
+    const inputEl = $('.userMsg');
+	$('.userMsg').keypress(function (event) {
 		if (event.which === '13') {
 			event.preventDefault();
 			addMsg();
 		}
-	})
+	});
 
 	$('.send-message-btn').click(function(){
 		addMsg();
-	})
+	});
 
-	const inputEl = $('.userMsg');
 	function addMsg() {
 		const msg = inputEl.val();
 		inputEl.val('');
@@ -99,7 +99,7 @@ $(function(){
 				logging( JSON.parse(responce));
 			});
 		location.reload(true);
-	})
+	});
 
 	function ajax(data) {
 		return $.ajax({
@@ -108,4 +108,4 @@ $(function(){
 			data: data,
 		}); 
 	}
-})
+});

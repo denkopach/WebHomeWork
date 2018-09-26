@@ -11,7 +11,7 @@
             <input type="text" name="userMsg" class="userMsg">
             <input type="button" name="btnMsg" value=" Send " class="send-message-btn">
         </form>
-        <form method="post" action="postRedirectGet.php">
+        <form method="post">
             <input type="button" name="btnExt" value="Logout" class="exit-btn">
         </form>
     </div>
