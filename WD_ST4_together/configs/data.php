@@ -15,6 +15,7 @@ return [
         'dbPassword' => '',
         'dbPort' => 3306
     ],
+
     'json' => [
         'forecastsNumber' => FORECAST_AMOUNT,
         'jsonPath' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'today.json'

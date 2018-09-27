@@ -124,3 +124,7 @@ nav a.active {
     padding: 20px;
     margin: 50px;
 }
+.weather-icon {
+    fill: white;
+    color:white;
+}

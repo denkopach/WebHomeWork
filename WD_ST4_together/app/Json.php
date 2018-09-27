@@ -4,15 +4,20 @@ include('WeatherInterface.php');
 
 class Json implements WeatherInterface
 {
-    private $jsonDataConfig;
-    private $icons;
     private $jsonError;
+    private $jsonDataConfig;
 
-    public function __construct($dataConfig, $icons)
+    public function __construct()
     {
-        $this->jsonDataConfig = $dataConfig;
-        $this->icons = $icons;
+        $dataConfig = include CONFIG_PATH . 'data.php';
+        $this->jsonDataConfig = $dataConfig['json'];
         $this->jsonError = $this->checkJson();
+        if ($this->jsonError) {
+            http_response_code(404);
+            header('Content-Type: application/json');
+            echo json_encode($this->jsonError);
+            return;
+        }
     }
 
     private function checkJson()
@@ -34,50 +39,16 @@ class Json implements WeatherInterface
 
     public function run()
     {
-        if ($this->jsonError) {
-            http_response_code(404);
-            header('Content-Type: application/json');
-            echo json_encode($this->jsonError);
-            return;
-        }
-
-        include('TemperatureConverter.php');
-
         $jsonForecasts = json_decode(file_get_contents($this->jsonDataConfig['jsonPath']));
-        $weatherForecasts = $jsonForecasts->list;
+        $weather = $jsonForecasts->list;
 
-        array_splice($weatherForecasts, $this->jsonDataConfig['forecastsNumber']);
+        array_splice($weather, $this->jsonDataConfig['forecastsNumber']);
 
         http_response_code(200);
         header('Content-Type: application/json');
 
-        echo json_encode(array_map(function ($weatherForHour) {
-            return [
-                'time' => $weatherForHour->dt,
-                'temperature' => TemperatureConverter::kelvinToCelsius($weatherForHour->main->temp),
-                'icon' => $this->choiceIcons($weatherForHour->weather[0]->main, $weatherForHour->clouds->all),
-            ];
-        }, $weatherForecasts));
-    }
-
-    private function choiceIcons($iconId, $cloudValue)
-    {
-        if ($iconId === 'Clear' && $cloudValue < 10) {
-            return $this->icons['sun'];
-        }
-
-        if ($iconId === 'Clear' && $cloudValue >= 10) {
-            return $this->icons['sunCloud'];
-        }
-
-        if ($iconId === 'Clouds') {
-            return $this->icons['cloud'];
-        }
-
-        if ($iconId === 'Rain') {
-            return $this->icons['rain'];
-        }
-
-        return $this->icons['flash'];
+        require_once('ForecastAdapter.php');
+        $adapter = new ForecastAdapter();
+        echo $adapter->get($weather);
     }
 }
