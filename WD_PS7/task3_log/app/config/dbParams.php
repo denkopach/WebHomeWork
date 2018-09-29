@@ -1,8 +1,8 @@
 <?php
 // Массив с параметрами подключения к базе данных
-return array(
+return [
     'host' => 'localhost',
-    'dbname' => 'bd_chat3',
+    'dbname' => 'bd_chat',
     'user' => 'root',
     'password' => '',
-);
+];
