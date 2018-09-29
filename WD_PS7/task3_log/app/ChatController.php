@@ -2,27 +2,36 @@
 
 class ChatController
 {
+    private $configs;
+    public function __construct($configs)
+    {
+        $this->configs = $configs;
+    }
 
-    static function addMsg($message)
+    public function addMsg($message)
     {
         $msg = htmlspecialchars($message, ENT_QUOTES);
         $name = $_SESSION['login'];
-        $db = Db::getConnection();
-        $sql = 'INSERT INTO messages (name, msg) '
-                . 'VALUES (:name, :msg)';
+        $userId = $_SESSION['id'];
+        $Db = new Db($this->configs);
+        $db = $Db->getConnection();
+        $sql = 'INSERT INTO messages (userName, msgText, userId) '
+                . 'VALUES (:userName, :msgText, :userId)';
 
         $result = $db->prepare($sql);
-        $result->bindParam(':name', $name, PDO::PARAM_STR);
-        $result->bindParam(':msg', $msg, PDO::PARAM_STR);
+        $result->bindParam(':userName', $name, PDO::PARAM_STR);
+        $result->bindParam(':msgText', $msg, PDO::PARAM_STR);
+        $result->bindParam(':userId', $userId, PDO::PARAM_STR);
         return $result->execute();
     }
 
-    static function getMsg($lastId) {
-        $db = Db::getConnection();
+    public function getMsg($lastId) {
+        $DB = new Db($this->configs);
+        $db = $DB->getConnection();
         if (empty($lastId)) {
             $lastId = 0;
         }
-        $sql = 'SELECT * FROM messages WHERE `time` >= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 1 HOUR) AND `newid` > ?';
+        $sql = 'SELECT * FROM messages WHERE `msgTime` >= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 1 HOUR) AND `msgId` > ?';
         $result = $db->prepare($sql);
         return $result->execute(array($lastId)) ? $result->fetchAll() : false;
     }

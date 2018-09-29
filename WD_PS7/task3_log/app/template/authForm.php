@@ -5,12 +5,12 @@
         <label>Enter your password</label>
         <input type="password" name="pass">
         <div class="error">
-            <?php if (isset($_SESSION['loginErr'])): ?>
+            <?php if (isset($_SESSION['loginErr']) && !empty($_SESSION['loginErr'])): ?>
                     <?php foreach ($_SESSION['loginErr'] as $key => $value): ?>
                             <p><?= $value ?></p>
                     <?php endforeach;
-                endif;
-                $_SESSION['loginErr'] = array(); ?>
+                $_SESSION['loginErr'] = array();
+                endif;?>
         </div>
         <input type="submit" name="submitAuth" value="Submit">
         <div class="shadow-box">

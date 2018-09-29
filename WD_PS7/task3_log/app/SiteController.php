@@ -1,22 +1,23 @@
 <?php
 class SiteController
 {
-    static function actionIndex()
-    {
-        global $configs;
-        include $configs->header;
+    public $configs;
 
-        if ($configs->createDb)  {
-                CreateDb::create();
-                $configs->createDb = false;
-            }
+    public function __construct($configs)
+    {
+        $this->configs = $configs;
+    }
+
+    public function actionIndex()
+    {
+        include $this->configs->header;
         
         if (isset($_SESSION['auth'])) {
-            include $configs->chatForm;
+            include $this->configs->chatForm;
         } else {
-            include $configs->authForm;
+            include $this->configs->authForm;
         };
 
-        include $configs->footer;
+        include $this->configs->footer;
     }
 }

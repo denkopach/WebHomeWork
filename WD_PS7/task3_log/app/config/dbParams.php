@@ -2,7 +2,7 @@
 // Массив с параметрами подключения к базе данных
 return array(
     'host' => 'localhost',
-    'dbname' => 'bd_chat',
+    'dbname' => 'bd_chat3',
     'user' => 'root',
     'password' => '',
 );

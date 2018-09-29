@@ -9,7 +9,7 @@
         </div>
         <form class="formChat" method="post">
             <input type="text" name="userMsg" class="userMsg">
-            <input type="button" name="btnMsg" value=" Send " class="send-message-btn">
+            <input type="submit" name="btnMsg" value=" Send " class="send-message-btn">
         </form>
         <form method="post">
             <input type="button" name="btnExt" value="Logout" class="exit-btn">

@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 ini_set('display_errors',1);
 error_reporting(E_ALL);
@@ -11,10 +10,7 @@ define('APP_PATH', DIR_PATH.DIRECTORY_SEPARATOR.'app');
 define('TEMPLATE_PATH', APP_PATH.DIRECTORY_SEPARATOR.'template');
 define('CONFIG_PATH', APP_PATH.DIRECTORY_SEPARATOR.'config');
 
-require_once(APP_PATH.DIRECTORY_SEPARATOR.'Autoload.php');
-
 return (object) array(
-    'createDb' => false,
     'logFile' => CONFIG_PATH.DIRECTORY_SEPARATOR.'logs.log',
     'dbParams' => CONFIG_PATH.DIRECTORY_SEPARATOR.'dbParams.php',
     'header' => TEMPLATE_PATH.DIRECTORY_SEPARATOR.'header.php',

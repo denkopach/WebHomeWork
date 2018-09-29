@@ -3,34 +3,38 @@
 class UserController
 {   
     private $db;
-    function __construct()
+    private $logger;
+    private $errors;
+
+    function __construct($configs)
     {
-        $this->db = Db::getConnection();
+        $DB = new Db($configs);
+        $this->db = $DB->getConnection();
+        $this->logger = new Logger($configs);
+        $this->errors = include $configs->error;
     }
     public function authorization($name, $pass)
     {
-        global $configs;
-        $errors = include $configs->error;
         try {
             if ($this->checkUserAndPass($name, $pass)) {
                 return true;
             }
 
             if ($this->checkUserExist($name)) {
-                Logger::log("INFO", 'wrong pass', "authorization");
-                $_SESSION['loginErr'][] = $errors['passIsWrong'];
+                $this->logger->log("INFO", 'wrong pass', "authorization");
+                $_SESSION['loginErr'][] = $this->errors['passIsWrong'];
                 return false;
             }
 
             if ($this->addNewUser($name, $pass)) {
                 return true;
             }
-            Logger::log("INFO", 'somethingWrong', "authorization");
-            $_SESSION['err'][] = $errors['somethingWrong'];
+            $this->logger->log("INFO", 'somethingWrong', "authorization");
+            $_SESSION['err'][] = $this->errors['somethingWrong'];
             return false;
 
         } catch (Exception $err){
-            Logger::log("ERROR", $err->getMessage(), "authorization");
+            $this->logger->log("ERROR", $err->getMessage(), "authorization");
             $_SESSION['err'][] = $err->getMessage();
             return false;
         }
@@ -38,7 +42,7 @@ class UserController
     private function addNewUser($name, $pass)
     {
 
-        $sql = 'INSERT INTO users (name, pass)'
+        $sql = 'INSERT INTO users (userName, userPass)'
                 . 'VALUES (:name, :pass)';
 
         $result = $this->db->prepare($sql);
@@ -52,10 +56,10 @@ class UserController
 
     private function checkUserAndPass($name, $pass)
     {
-        $sql = 'SELECT newid FROM users WHERE name = :name AND pass = :pass';
+        $sql = 'SELECT userId FROM users WHERE userName = :userName AND userPass = :userPass';
         $result = $this->db->prepare($sql);
-        $result->bindParam(':name', $name, PDO::PARAM_STR);
-        $result->bindParam(':pass', $pass, PDO::PARAM_STR);
+        $result->bindParam(':userName', $name, PDO::PARAM_STR);
+        $result->bindParam(':userPass', $pass, PDO::PARAM_STR);
         $result->execute();
         $userID = $result->fetch();
         if ($userID) {
@@ -67,9 +71,9 @@ class UserController
 
     private function checkUserExist($name)
     {
-        $sql = 'SELECT * FROM users WHERE name = :name';
+        $sql = 'SELECT * FROM users WHERE userName = :userName';
         $result = $this->db->prepare($sql);
-        $result->bindParam(':name', $name, PDO::PARAM_STR);
+        $result->bindParam(':userName', $name, PDO::PARAM_STR);
         $result->execute();
         $user = $result->fetch();
         if ($user) {

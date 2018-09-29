@@ -7,25 +7,30 @@ $(function(){
 	setInterval(updChat, 1000);
 
 	function logging(obj) {	
-		console.log(obj);
+		if (IS_LOGGING) {
+            console.log(obj);
+        }
 	}
-
+    $(".formChat").submit(function () {
+        event.preventDefault();
+        addMsg();
+    });
 	function updChat() {
 		ajax({updChat: true, lastId: currentId})
-			.done(function (responce) {
+			.done(function (response) {
 				try {
-					responce = JSON.parse(responce);
-					logging(responce['log']);
-					if (responce['data']){
-						addMsgInChat(responce['data']);
+					response = JSON.parse(response);
+					logging(response['log']);
+					if (response['data']){
+						addMsgInChat(response['data']);
 					}
 				} catch(err) {
 					logging(err);
 				}
-			}).fail(function(responce) {
+			}).fail(function(response) {
 				try {
-					responce = JSON.parse(responce);
-					logging(responce['log']);
+					response = JSON.parse(response);
+					logging(response['log']);
 				} catch(err) {
 					logging(err);
 				}
@@ -34,54 +39,49 @@ $(function(){
 	const chatBlock = $('.block-msg-windows');
 	function addMsgInChat(chatArr) {
 		chatArr.forEach(function(element) {
-			const date = new Date(element.time);
+			const date = new Date(element.msgTime);
 			const time = [date.getHours(), date.getMinutes(), date.getSeconds()].map(function (dateItem ) {
 				return dateItem < 10 ? "0" + dateItem : dateItem;
 				}).join(":");
-			if (currentId < element.newid) {
-				let msg = element.msg
+			if (currentId < element.msgId) {
+				let msg = element.msgText
 						.replace(':)','<img src = "images/smile.png">')
 						.replace(':(','<img src = "images/sad.png">');
-				msg = `<p>[${time}] ${element.name}: ${msg}</p>`;
+				msg = `<p>[${time}] ${element.userName}: ${msg}</p>`;
 				chatBlock.append(msg);
-				currentId = element.newid;
+				currentId = element.msgId;
 				chatBlock.scrollTop(chatBlock.prop('scrollHeight'));
 			}
 		});
 	}
-
-	$('.block-chat').on('click', '.btmMsg', function() {
+	const chat = $('.block-chat');
+    chat.on('click', '.btmMsg', function() {
 		addMsgInChat();
 	});
 
     const inputEl = $('.userMsg');
-	$('.userMsg').keypress(function (event) {
+    inputEl.keypress(function (event) {
 		if (event.which === '13') {
 			event.preventDefault();
-			addMsg();
 		}
-	});
-
-	$('.send-message-btn').click(function(){
-		addMsg();
 	});
 
 	function addMsg() {
 		const msg = inputEl.val();
 		inputEl.val('');
-		if(msg.length > 0){
+		if(msg.length){
 			ajax({userMsg: msg,	btnMsg: 'send'})
-				.done(function(responce) {
+				.done(function(response) {
 					try {
-						responce = JSON.parse(responce);
-						logging(responce.log);
+						response = JSON.parse(response);
+						logging(response.log);
 					} catch (err) {
 						logging(err);
 					}
-				}).fail(function(responce) {
+				}).fail(function(response) {
 					try {
-						responce = JSON.parse(responce);
-						logging(responce['log']);
+						response = JSON.parse(response);
+						logging(response['log']);
 					} catch (err) {
 						logging(err);
 					}
@@ -91,12 +91,12 @@ $(function(){
 		updChat();
 	}
 
-	$('.block-chat').on('click', '.exit-btn', function() {
+    chat.on('click', '.exit-btn', function() {
 		ajax({btnExt: true})
-			.done(function(responce) {
-				logging( JSON.parse(responce));
-			}).fail(function(responce){
-				logging( JSON.parse(responce));
+			.done(function(response) {
+				logging( JSON.parse(response));
+			}).fail(function(response){
+				logging( JSON.parse(response));
 			});
 		location.reload(true);
 	});

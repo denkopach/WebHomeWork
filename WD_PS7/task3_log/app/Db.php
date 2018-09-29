@@ -1,17 +1,25 @@
 <?php
 class Db{
-    public static function getConnection()
+    private $params;
+
+    public function __construct($configs)
     {
+        $this->params = include_once 'config'.DIRECTORY_SEPARATOR.'dbParams.php';
+        $this->logger = new Logger($configs);
+    }
+
+    public function getConnection()
+    {
+        $params = $this->params;
+        $dsn = "mysql:host={$params['host']};dbname={$params['dbname']}";
         try {
-            global $configs;
-            $params = include $configs->dbParams;
-            $dsn = "mysql:host={$params['host']};dbname={$params['dbname']}";
             $db = new PDO($dsn, $params['user'], $params['password'], array(PDO::ATTR_PERSISTENT => true));
             $db->exec("set names utf8");
+            $this->logger->log('INFO', 'DB connectio succes', 'getConnection');
             return $db;
         } catch (PDOException $e) {
-             print "Error! : " . $e->getMessage() . "<br/>";
-             die();
+            $this->logger->log('ERROR', 'DB ERROR: ' . $e->getMessage(), 'getConnection');
+            die('Error! error conect to DB');
         }
     }
 }

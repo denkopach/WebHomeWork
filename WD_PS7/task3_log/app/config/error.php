@@ -7,4 +7,5 @@ return array(
     'somethingWrong' => 'что-то пошло не так',
     'loginIsEmpty' => 'введите логин',
     'passIsEmpty' => 'введите пароль',
+    'loginHasSymbol' => 'логин должен состоять из цифр и букв латинского алфавита'
 );
