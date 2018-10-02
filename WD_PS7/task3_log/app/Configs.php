@@ -4,12 +4,12 @@ class Configs
 {
     private static $configs;
 
-    public function get ()
+    public static function getPath ()
     {
         return self::$configs;
     }
 
-    public function set ($configs)
+    public static function setPath ($configs)
     {
         self::$configs = $configs;
     }

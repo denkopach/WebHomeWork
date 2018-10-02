@@ -1,8 +1,5 @@
 <?php
 
-ini_set('display_errors',1);
-error_reporting(E_ALL);
-
 define('SHOW_LOGS', true);
 
 define('DIR_PATH', dirname(dirname(__DIR__)));

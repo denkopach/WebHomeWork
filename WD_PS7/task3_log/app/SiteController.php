@@ -1,11 +1,11 @@
 <?php
 class SiteController
 {
-    public $configs;
+    private $configs;
 
-    public function __construct($configs)
+    public function __construct()
     {
-        $this->configs = $configs;
+        $this->configs = Configs::getPath();
     }
 
     public function actionIndex()

@@ -1,12 +1,6 @@
 <?php
 class Logger
 {
-    private $configs;
-    public function __construct($configs)
-    {
-        $this->configs = $configs;
-    }
-
     public function log($level, $message, $service)
     {
         if ($level === 'ERROR') {
@@ -26,7 +20,7 @@ class Logger
             "ip" => $_SERVER['REMOTE_ADDR'],
         );
         $logStr = date("Y-m-d H:i:s")."level='${level}' message='${message}' service='${service}' customerid='{$_SESSION['id']}' ip='{$_SERVER['REMOTE_ADDR']}'".PHP_EOL;
-        file_put_contents($this->configs->logFile, $logStr, FILE_APPEND | LOCK_EX);
+        file_put_contents(Configs::getPath()->logFile, $logStr, FILE_APPEND | LOCK_EX);
         return $log;
     }
 }

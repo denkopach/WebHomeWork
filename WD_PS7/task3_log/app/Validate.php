@@ -4,9 +4,9 @@ class Validate
 {
     private $errors;
 
-    public function __construct($configs)
+    public function __construct()
     {
-        $this->errors = include $configs->error;
+        $this->errors = include Configs::getPath()->error;
     }
 
     public function check($name, $pass)

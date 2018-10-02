@@ -104,7 +104,7 @@ $(function(){
 	function ajax(data) {
 		return $.ajax({
 			type: "POST",
-			url: 'postRedirectGet.php',
+			url: './',
 			data: data,
 		}); 
 	}

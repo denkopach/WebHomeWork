@@ -3,23 +3,21 @@
 class ChatController
 {
     private $configs;
-    public function __construct($configs)
+    public function __construct()
     {
-        $this->configs = $configs;
+        $this->configs = Configs::getPath();
     }
 
     public function addMsg($message)
     {
         $msg = htmlspecialchars($message, ENT_QUOTES);
-        $name = $_SESSION['login'];
         $userId = $_SESSION['id'];
         $Db = new Db($this->configs);
         $db = $Db->getConnection();
-        $sql = 'INSERT INTO messages (userName, msgText, userId) '
-                . 'VALUES (:userName, :msgText, :userId)';
+        $sql = 'INSERT INTO messages (msgText, userId) '
+                . 'VALUES (:msgText, :userId)';
 
         $result = $db->prepare($sql);
-        $result->bindParam(':userName', $name, PDO::PARAM_STR);
         $result->bindParam(':msgText', $msg, PDO::PARAM_STR);
         $result->bindParam(':userId', $userId, PDO::PARAM_STR);
         return $result->execute();
@@ -31,8 +29,12 @@ class ChatController
         if (empty($lastId)) {
             $lastId = 0;
         }
-        $sql = 'SELECT * FROM messages WHERE `msgTime` >= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 1 HOUR) AND `msgId` > ?';
+        $sql = 'SELECT * FROM messages LEFT JOIN users USING(`userId`) WHERE `msgTime` >= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 1 HOUR) AND `msgId` > ?';
+        //$sql = 'SELECT * FROM messages WHERE `msgTime` >= DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 1 HOUR) AND `msgId` > ?';
         $result = $db->prepare($sql);
+//        $result->execute(array($lastId));
+//
+//        die(var_dump($result->fetchAll()));
         return $result->execute(array($lastId)) ? $result->fetchAll() : false;
     }
 }

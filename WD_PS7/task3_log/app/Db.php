@@ -2,10 +2,10 @@
 class Db{
     private $params;
 
-    public function __construct($configs)
+    public function __construct()
     {
         $this->params = include_once 'config'.DIRECTORY_SEPARATOR.'dbParams.php';
-        $this->logger = new Logger($configs);
+        $this->logger = new Logger(Configs::getPath());
     }
 
     public function getConnection()

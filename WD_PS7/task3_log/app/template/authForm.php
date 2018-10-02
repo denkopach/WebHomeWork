@@ -1,5 +1,5 @@
 <div class="block-auth">
-    <form method="post" action="postRedirectGet.php">
+    <form method="post">
         <label>Enter your name</label>
         <input type="text" name="login">
         <label>Enter your password</label>

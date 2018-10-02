@@ -6,8 +6,9 @@ class UserController
     private $logger;
     private $errors;
 
-    function __construct($configs)
+    function __construct()
     {
+        $configs = Configs::getPath();
         $DB = new Db($configs);
         $this->db = $DB->getConnection();
         $this->logger = new Logger($configs);
